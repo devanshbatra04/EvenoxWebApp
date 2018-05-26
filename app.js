@@ -25,6 +25,8 @@ app.use(passport.session());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//------------------------------ ROUTES ------------------------------//
+
 app.get("/", function(req,res){
     res.render("home");
 });
@@ -33,7 +35,17 @@ app.get("/secret", function(req,res){
     res.render("secret");
 });
 
+//Signup Form
+app.get("/register", function(req, res){
+    res.render("register");
+});
+
 var port = process.env.PORT || 5000;
+
+//--------------------------------------------------------------------//
+
+
+
 
 
 app.listen(port, function(){
