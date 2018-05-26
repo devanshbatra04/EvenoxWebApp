@@ -19,6 +19,12 @@ app.use(expressSession({
     saveUninitialized: false
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.get("/", function(req,res){
     res.render("home");
 });
