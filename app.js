@@ -92,6 +92,10 @@ app.get("/events", function(req,res){
     res.send("<h1>Events will be populated here</h1>");
 });
 
+app.get("/events/new", function(req, res){
+    res.render("newEvent");
+});
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var port = process.env.PORT || 5000;
