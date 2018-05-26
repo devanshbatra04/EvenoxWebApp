@@ -6,7 +6,10 @@ const express                = require('express'),
     passportLocalMongoose    = require('passport-local-mongoose'),
     expressSession           = require('express-session');
 
+<<<<<<< HEAD
 var User                     = require('./models/user');
+=======
+>>>>>>> parent of a3b4ca3... User Schema added
 
 mongoose.connect("mongodb://localhost/Evenox");
 
