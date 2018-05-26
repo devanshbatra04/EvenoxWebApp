@@ -40,6 +40,12 @@ app.get("/register", function(req, res){
     res.render("register");
 });
 
+//Signup Post Route
+app.post("/register", function(req, res){
+    console.log(req.body);
+    res.send("User received");
+});
+
 var port = process.env.PORT || 5000;
 
 //--------------------------------------------------------------------//
