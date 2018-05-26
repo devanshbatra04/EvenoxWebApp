@@ -45,6 +45,22 @@ app.get("/register", function(req, res){
 
 //Signup Post Route
 app.post("/register", function(req, res){
+    var newUser = new User({
+        username: req.body.userName,
+        email: req.body.email,
+        phoneNumber: req.body.phoneNumber,
+        name: req.body.name
+    });
+
+    User.register(newUser, req.body.password, function(error, user){
+        if (error){
+            console.log("could not register user");
+            console.log(error);
+        }
+        console.log("User Registered");
+
+    });
+
     console.log(req.body);
     res.send("User received");
 });
