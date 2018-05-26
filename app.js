@@ -96,6 +96,11 @@ app.get("/events/new", function(req, res){
     res.render("newEvent");
 });
 
+app.post("/events", function(req,res){
+    res.send("Event Received");
+    console.log(req.body);
+});
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var port = process.env.PORT || 5000;
