@@ -6,6 +6,10 @@
     <div>
         <strong>Location: </strong> <%= events[i].location %>
         <strong>Start Date and Time :</strong> <%= events[i].startDate %> <%= events[i].startTime %>
+        <% var a ="/events/"; %>
+        <% var id = events[i]._id %>
+        <% var url = a + id %>
+        <em><a href=<%= url %>>More details</a></em>
     </div>
 </div>
 
