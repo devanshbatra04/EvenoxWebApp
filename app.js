@@ -89,9 +89,7 @@ function isLoggedIn(req,res,next){
     }
 }
 
-app.get("/events", function(req,res){
-    res.send("<h1>Events will be populated here</h1>");
-});
+
 
 app.get("/events/new", function(req, res){
     res.render("newEvent");
@@ -117,6 +115,19 @@ app.post("/events", function(req,res){
     });
     console.log(startArr);
     console.log(req.body);
+});
+
+app.get('/events', function(req,res){
+    console.log("here");
+    Event.find({},function(err, events){
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.render("events", {events: events});
+        }
+
+    });
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
