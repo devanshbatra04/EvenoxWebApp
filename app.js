@@ -97,7 +97,9 @@ app.get("/events/new", function(req, res){
 });
 
 app.post("/events", function(req,res){
-    res.send("Event Received");
+    var startArr = req.body.startTime.split('T');
+    var endArr = req.body.endTime.split('T');
+    console.log(startArr);
     console.log(req.body);
 });
 
