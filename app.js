@@ -5,7 +5,8 @@ const express                = require('express'),
     localStrategy            = require('passport-local'),
     passportLocalMongoose    = require('passport-local-mongoose');
 
-var User = require('./models/user');
+var User = require('./models/user'),
+    Event = require('./models/event');
 
 mongoose.connect("mongodb://localhost/Evenox");
 
@@ -99,6 +100,21 @@ app.get("/events/new", function(req, res){
 app.post("/events", function(req,res){
     var startArr = req.body.startTime.split('T');
     var endArr = req.body.endTime.split('T');
+    Event.create({
+        name: req.body.eventName,
+        location: req.body.location,
+        startDate: startArr[0],
+        startTime: startArr[1],
+        endDate: endArr[0],
+        endTime: endArr[1],
+        description: req.body.Description
+    }, function(err, event){
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(event);
+        }
+    });
     console.log(startArr);
     console.log(req.body);
 });
