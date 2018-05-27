@@ -1,0 +1,12 @@
+<h1>Events will appear here</h1>
+<% for(var i = 0 ; i < events.length; i++) { %>
+
+<div>
+    <h2><%= events[i].name %></h2>
+    <div>
+        <strong>Location: </strong> <%= events[i].location %>
+        <strong>Start Date and Time :</strong> <%= events[i].startDate %> <%= events[i].startTime %>
+    </div>
+</div>
+
+<% } %>
