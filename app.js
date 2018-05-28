@@ -130,6 +130,20 @@ app.get('/events', function(req,res){
     });
 });
 
+app.get("/events/:id", function(req,res){
+    var id = req.params.id;
+
+    Event.findById(id, function(err, event){
+        if(err) {
+            console.log(err)
+        }
+        else {
+            res.render("eventPage", {event: event});
+        }
+
+    });
+});
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var port = process.env.PORT || 5000;
