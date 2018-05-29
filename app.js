@@ -16,6 +16,15 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 
 
+var fbLoginInfo = {
+    "cookieSecret":"e33cf67dd274b91847ae9991359e2abf",
+    "facebook":{
+    "app_id":"186261948694142",
+        "app_secret":"astringishere",
+        "callback":"http://localhost:5000/auth/facebook/callback"
+    }
+}
+
 app.use(require("express-session")({
     secret: "Please work this time",
     resave : false,
