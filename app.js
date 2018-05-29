@@ -3,7 +3,8 @@ const express                = require('express'),
     passport                 = require('passport'),
     bodyParser               = require('body-parser'),
     localStrategy            = require('passport-local'),
-    passportLocalMongoose    = require('passport-local-mongoose');
+    passportLocalMongoose    = require('passport-local-mongoose'),
+    FacebookStrategy         = require('passport-facebook').Strategy;
 
 var User = require('./models/user'),
     Event = require('./models/event');
@@ -20,10 +21,10 @@ var fbLoginInfo = {
     "cookieSecret":"e33cf67dd274b91847ae9991359e2abf",
     "facebook":{
     "app_id":"186261948694142",
-        "app_secret":"astringishere",
+        "app_secret":"e33cf67dd274b91847ae9991359e2abf",
         "callback":"http://localhost:5000/auth/facebook/callback"
     }
-}
+};
 
 app.use(require("express-session")({
     secret: "Please work this time",
@@ -34,12 +35,30 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.use(new FacebookStrategy({
+    clientID: fbLoginInfo.facebook.app_id,
+    clientSecret: fbLoginInfo.facebook.app_secret,
+    callbackURL: fbLoginInfo.facebook.callback,
+    profileFields:['id', 'displayName', 'emails']},
+    function(accessToken, refreshToken, profile, done){
+    var me = new User({
+        email: profile.emails[0].value,
+        name:profile.displayName
+    });
+    console.log("here");
+    console.log(profile);
+    }));
+
 passport.use(new localStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 /////////////////////////////////////// ROUTES//////////////////////////////////////////////////////////
+
+app.get('/auth/facebook', passport.authenticate('facebook', {scope:"email"}));
+app.get('/auth/facebook/callback', passport.authenticate('facebook',
+    { successRedirect: '/', failureRedirect: '/login' }));
 
 app.get("/register", function(req, res){
     res.render("register");
