@@ -35,6 +35,18 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.serializeUser(function(user, done) {
+    console.log(user);
+    done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+});
+
+
 passport.use(new FacebookStrategy({
     clientID: fbLoginInfo.facebook.app_id,
     clientSecret: fbLoginInfo.facebook.app_secret,
@@ -45,29 +57,31 @@ passport.use(new FacebookStrategy({
         email: profile.emails[0].value,
         name:profile.displayName
     });
-    user.findOne({email:me.email}, function(err,u){
+    User.findOne({email:me.email}, function(err,u){
         if(!u){
             me.save(function(err, user){
                 if (err) {
                     return done(err);
                 }
                 else {
-                    done(null.me);
+                    console.log("here");
+                    done(null, me);
                 }
             })
         }
         else {
-            return done(null.u);
+            console.log("here");
+            return done(null,u);
         }
-    })
+    });
     console.log("here");
     console.log(profile);
     }));
 
 passport.use(new localStrategy(User.authenticate()));
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 /////////////////////////////////////// ROUTES//////////////////////////////////////////////////////////
 
