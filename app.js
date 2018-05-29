@@ -45,6 +45,21 @@ passport.use(new FacebookStrategy({
         email: profile.emails[0].value,
         name:profile.displayName
     });
+    user.findOne({email:me.email}, function(err,u){
+        if(!u){
+            me.save(function(err, user){
+                if (err) {
+                    return done(err);
+                }
+                else {
+                    done(null.me);
+                }
+            })
+        }
+        else {
+            return done(null.u);
+        }
+    })
     console.log("here");
     console.log(profile);
     }));
