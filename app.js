@@ -55,7 +55,8 @@ passport.use(new FacebookStrategy({
     function(accessToken, refreshToken, profile, done){
     var me = new User({
         email: profile.emails[0].value,
-        name:profile.displayName
+        name:profile.displayName,
+        _id: new mongoose.Types.ObjectId()
     });
     User.findOne({email:me.email}, function(err,u){
         if(!u){
