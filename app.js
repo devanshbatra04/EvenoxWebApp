@@ -95,7 +95,7 @@ app.get("/register", function(req, res){
 });
 
 app.get("/", function(req,res){
-    res.render("home");
+    res.render("landing");
 });
 
 app.post("/register", function(req,res){
