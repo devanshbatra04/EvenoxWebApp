@@ -95,7 +95,10 @@ app.get("/register", function(req, res){
 });
 
 app.get("/", function(req,res){
-    res.render("landing");
+    if (req.isAuthenticated()) {
+        res.redirect('/events');
+    }
+    else res.render("landing");
 });
 
 app.post("/register", function(req,res){
