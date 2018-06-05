@@ -9,7 +9,6 @@ const express                = require('express'),
 
 var User = require('./models/user'),
     Event = require('./models/event');
-
 mongoose.connect("mongodb://localhost/Evenox");
 
 
@@ -17,7 +16,7 @@ var app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(__dirname + '/public'));
 
 var fbLoginInfo = {
     "cookieSecret":"e33cf67dd274b91847ae9991359e2abf",
