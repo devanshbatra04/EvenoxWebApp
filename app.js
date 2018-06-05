@@ -101,6 +101,11 @@ app.get("/", function(req,res){
     else res.render("landing");
 });
 
+app.get("/user", ensureLoggedIn(), function(req,res){
+    console.log("chalna chahiye");
+    res.render("calendar");
+});
+
 app.post("/register", function(req,res){
     User.register(new User({
         username : req.body.username,
@@ -122,7 +127,7 @@ app.post("/register", function(req,res){
     console.log("Posted");
 });
 
-app.get("/secret", isLoggedIn, function(req,res){
+app.get("/secret", ensureLoggedIn(), function(req,res){
     res.render("secret");
 });
 
@@ -142,11 +147,17 @@ app.get("/logout",function(req,res){
     res.redirect("/");
 });
 
-function isLoggedIn(req,res,next){
-    if (req.isAuthenticated()) {
-        return next;
-    }    else {
-        res.redirect('/login');
+function ensureLoggedIn() {
+    return function(req, res, next) {
+        // isAuthenticated is set by `deserializeUser()`
+        if (!req.isAuthenticated || !req.isAuthenticated()) {
+            res.status(401).send({
+                success: false,
+                message: 'You need to be authenticated to access this page!'
+            })
+        } else {
+            next()
+        }
     }
 }
 
