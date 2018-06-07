@@ -11,4 +11,7 @@
     <div>
         <%= event.description%>
     </div>
+    <% var i = "/events/" + event._id + "/edit"; %>
+
+    <h2><a href=<%= i %>>Edit Event</a></h2>
 <% include ../partials/footer.ejs %>
