@@ -56,6 +56,7 @@ passport.use(new FacebookStrategy({
     function(accessToken, refreshToken, profile, done){
     var me = new User({
         email: profile.emails[0].value,
+        username:profile.displayName,
         name:profile.displayName,
         _id: new mongoose.Types.ObjectId()
     });
@@ -171,6 +172,10 @@ app.get("/events/new", ensureLoggedIn(), function(req, res){
 app.post("/events", ensureLoggedIn(), function(req,res){
     var startArr = req.body.startTime.split('T');
     var endArr = req.body.endTime.split('T');
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    };
     Event.create({
         name: req.body.eventName,
         location: req.body.location,
@@ -178,9 +183,10 @@ app.post("/events", ensureLoggedIn(), function(req,res){
         startTime: startArr[1],
         endDate: endArr[0],
         endTime: endArr[1],
-        description: req.body.Description
+        description: req.body.Description,
+        author : author
     }, function(err, event){
-        console.log(req.user);
+        console.log(event);
         if(err) {
             console.log(err);
         } else {

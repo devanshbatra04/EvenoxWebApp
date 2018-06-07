@@ -8,7 +8,7 @@ var eventSchema = mongoose.Schema({
     endDate: String,
     endTime: String,
     description: String,
-    user : {
+    author : {
         id : {
             type: mongoose.Schema.Types.ObjectId,
             ref : "User"

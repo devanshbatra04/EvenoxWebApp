@@ -1,5 +1,6 @@
 <% include partials/header.ejs %>
 <h1><%= event.name%></h1>
+<h2>Listed By: <%= event.author.username %></h2>
 
 <ul>
     <li>The event <%= event.name%> will be held at <%= event.location %></>
