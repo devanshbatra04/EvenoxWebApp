@@ -18,7 +18,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/public', express.static(__dirname + '/public'));
-app.use(methodOverride("_method"));g
+app.use(methodOverride("_method"));
 
 var fbLoginInfo = {
     "cookieSecret":"e33cf67dd274b91847ae9991359e2abf",
@@ -223,6 +223,10 @@ app.get("/events/:id", function(req,res){
 
     });
 });
+
+app.get("/events/:id/edit", function(req,res){
+    res.send("Edit events route");
+})
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
