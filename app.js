@@ -165,7 +165,7 @@ function ensureLoggedIn() {
 
 
 app.get("/events/new", ensureLoggedIn(), function(req, res){
-    res.render("newEvent");
+    res.render("newEvent", {currentUser: req.user});
 });
 
 app.post("/events", ensureLoggedIn(), function(req,res){
