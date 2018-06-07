@@ -164,11 +164,11 @@ function ensureLoggedIn() {
 
 
 
-app.get("/events/new", function(req, res){
+app.get("/events/new", ensureLoggedIn(), function(req, res){
     res.render("newEvent");
 });
 
-app.post("/events", function(req,res){
+app.post("/events", ensureLoggedIn(), function(req,res){
     var startArr = req.body.startTime.split('T');
     var endArr = req.body.endTime.split('T');
     Event.create({
@@ -180,10 +180,11 @@ app.post("/events", function(req,res){
         endTime: endArr[1],
         description: req.body.Description
     }, function(err, event){
+        console.log(req.user);
         if(err) {
             console.log(err);
         } else {
-            console.log(event);
+            res.redirect("/events");
         }
     });
     console.log(startArr);
@@ -191,7 +192,6 @@ app.post("/events", function(req,res){
 });
 
 app.get('/events', function(req,res){
-    console.log("here");
     Event.find({},function(err, events){
         if (err) {
             console.log(err);
