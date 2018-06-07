@@ -7,17 +7,19 @@
 
         <input type="text" name="eventName" placeholder="Name of your event" value="<%= event.name %>">
 
-        <input type="text" name="location" placeholder="Location of your event" value="<%= event.location%>" >>
+        <input type="text" name="location" placeholder="Location of your event" value="<%= event.location%>" >
 
         <label> Starting Time and Date of Event:
-            <input type="datetime-local" name="startTime" placeholder="Starting date and time of your event"%>>
+            <input type="datetime-local" name="startTime" placeholder="Starting date and time of your event" value="<%= event.stDetails%>">
         </label>
 
         <label> Ending time and date of event:
-            <input type="datetime-local" name="endTime" placeholder="Ending date and time of your event">
+            <input type="datetime-local" name="endTime" placeholder="Ending date and time of your event" value="<%= event.endDetails%>">
         </label>
 
-        <textarea name="Description" placeholder="Event Description" id="" cols="30" rows="10"></textarea>
+        <textarea name="Description" placeholder="Event Description" id="" cols="30" rows="10">
+            <%= event.description %>
+        </textarea>
 
         <input type="submit">
     </form>
