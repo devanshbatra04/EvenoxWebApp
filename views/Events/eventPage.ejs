@@ -12,6 +12,11 @@
         <%= event.description%>
     </div>
     <% var i = "/events/" + event._id + "/edit"; %>
+    <form action="/events/<%= event._id %>?_method=DELETE" method="POST" >
+        <button>
+            DELETE
+        </button>
+    </form>
 
     <h2><a href=<%= i %>>Edit Event</a></h2>
 <% include ../partials/footer.ejs %>

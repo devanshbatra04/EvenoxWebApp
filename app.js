@@ -259,6 +259,18 @@ app.get("/events/:id/edit", function(req,res){
         });
 });
 
+
+app.delete("/events/:id", function(req,res){
+    Event.findByIdAndRemove(req.params.id, function(err){
+        if (err) {
+            console.log(err);
+            res.redirect("/events");
+        }
+        else {
+            res.redirect("/events");
+        }
+    })
+});
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var port = process.env.PORT || 5000;
