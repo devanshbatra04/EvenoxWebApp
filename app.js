@@ -200,6 +200,30 @@ app.post("/events", ensureLoggedIn(), function(req,res){
     console.log(req.body);
 });
 
+
+app.put("/events/:id/edit", function(req, res){
+    var startArr = req.body.startTime.split('T');
+    var endArr = req.body.endTime.split('T');
+    var toUpdate = {
+        name: req.body.eventName,
+        location: req.body.location,
+        stDetails: req.body.startTime,
+        endDetails: req.body.endTime,
+        startDate: startArr[0],
+        startTime: startArr[1],
+        endDate: endArr[0],
+        endTime: endArr[1],
+        description: req.body.Description,
+    };
+    Event.findByIdAndUpdate(req.params.id, toUpdate, function(err, updated){
+        if (err) console.log(err);
+        else console.log(updated);
+        var redirectStringUrl = "/events/" + req.params.id;
+        res.redirect(redirectStringUrl);
+
+    });
+});
+
 app.get('/events', function(req,res){
     Event.find({},function(err, events){
         if (err) {
