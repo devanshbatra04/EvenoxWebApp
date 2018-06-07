@@ -118,7 +118,7 @@ app.post("/register", function(req,res){
     }), req.body.password, function(err, user){
         if (err){
             console.log(err);
-            res.render('register', {currentUser: req.user});
+            res.render('Auth/register', {currentUser: req.user});
         }
         else {
             console.log("user registered");
@@ -131,11 +131,11 @@ app.post("/register", function(req,res){
 });
 
 app.get("/secret", ensureLoggedIn(), function(req,res){
-    res.render("secret");
+    res.render("Auth/secret");
 });
 
 app.get("/login", function(req,res){
-    res.render('reg-login.ejs', {currentUser: req.user});
+    res.render('Auth/reg-login.ejs', {currentUser: req.user});
 });
 
 app.post('/login', passport.authenticate("local", {
@@ -167,7 +167,7 @@ function ensureLoggedIn() {
 
 
 app.get("/events/new", ensureLoggedIn(), function(req, res){
-    res.render("newEvent", {currentUser: req.user});
+    res.render("Events/newEvent", {currentUser: req.user});
 });
 
 app.post("/events", ensureLoggedIn(), function(req,res){
@@ -204,7 +204,7 @@ app.get('/events', function(req,res){
             console.log(err);
         }
         else {
-            res.render("events", {events: events, currentUser: req.user});
+            res.render("Events/events", {events: events, currentUser: req.user});
         }
 
     });
@@ -218,7 +218,7 @@ app.get("/events/:id", function(req,res){
             console.log(err)
         }
         else {
-            res.render("eventPage", {event: event, currentUser: req.user});
+            res.render("Events/eventPage", {event: event, currentUser: req.user});
         }
 
     });

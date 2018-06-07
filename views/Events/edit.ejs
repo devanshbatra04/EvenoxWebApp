@@ -1,6 +1,9 @@
 <% include ../partials/header.ejs %>
+
+<h2> EDIT <%= event.name %> </h2>
+
 <div class="container">
-    <form action="/events" method="POST">
+    <form action="/events/<%= event._id %>/edit?_method=PUT" method="POST">
 
         <input type="text" name="eventName" placeholder="Name of your event">
 
