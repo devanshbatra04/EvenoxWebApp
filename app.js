@@ -5,7 +5,8 @@ const express                = require('express'),
     localStrategy            = require('passport-local'),
     passportLocalMongoose    = require('passport-local-mongoose'),
     FacebookStrategy         = require('passport-facebook').Strategy,
-    path                     = require('path');
+    path                     = require('path'),
+    methodOverride           = require('method-override');
 
 var User = require('./models/user'),
     Event = require('./models/event');
@@ -17,6 +18,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/public', express.static(__dirname + '/public'));
+app.use(methodOverride("_method"));g
 
 var fbLoginInfo = {
     "cookieSecret":"e33cf67dd274b91847ae9991359e2abf",
