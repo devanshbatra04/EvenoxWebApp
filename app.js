@@ -225,8 +225,13 @@ app.get("/events/:id", function(req,res){
 });
 
 app.get("/events/:id/edit", function(req,res){
-    res.send("Edit events route");
-})
+    Event.findById(req.params.id, function(err, event){
+            if(err) res.redirect("/events");
+            else {
+                res.render("Events/edit",{event:event, currentUser: req.user});
+            }
+        });
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
