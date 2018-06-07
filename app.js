@@ -180,6 +180,8 @@ app.post("/events", ensureLoggedIn(), function(req,res){
     Event.create({
         name: req.body.eventName,
         location: req.body.location,
+        stDetails: req.body.startTime,
+        endDetails: req.body.endTime,
         startDate: startArr[0],
         startTime: startArr[1],
         endDate: endArr[0],
