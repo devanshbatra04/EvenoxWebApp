@@ -1,4 +1,12 @@
+<% include partials/header.ejs %>
+
+
+
+
 <h1>Events will appear here</h1>
+
+<a href="/events/new">List Your Event Today!</a>
+
 <% for(var i = 0 ; i < events.length; i++) { %>
 
 <div>
@@ -14,3 +22,4 @@
 </div>
 
 <% } %>
+<% include partials/footer.ejs %>

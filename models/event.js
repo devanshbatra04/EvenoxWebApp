@@ -7,7 +7,14 @@ var eventSchema = mongoose.Schema({
     startTime: String,
     endDate: String,
     endTime: String,
-    description: String
+    description: String,
+    author : {
+        id : {
+            type: mongoose.Schema.Types.ObjectId,
+            ref : "User"
+        },
+    username: String
+    }
 });
 
 var Event = mongoose.model("Event", eventSchema);

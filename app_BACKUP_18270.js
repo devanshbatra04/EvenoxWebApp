@@ -9,8 +9,12 @@ const express                = require('express'),
 
 var User = require('./models/user'),
     Event = require('./models/event');
+<<<<<<< HEAD
 
 mongoose.connect("mongodb://dev:dev@ds237620.mlab.com:37620/evenox");
+=======
+mongoose.connect("mongodb://localhost/Evenox");
+>>>>>>> dev
 
 
 var app = express();

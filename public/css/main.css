@@ -1,0 +1,29 @@
+.spla:hover {
+    background-color:inherit !important;
+}
+.section-search input{
+    padding: 5px !important;
+    font-size: 18px !important;
+    width:90% !important;
+    border: #f4f4f4f4 3px solid !important;
+}
+.section-featured img{
+    max-height: 200px !important;
+}
+.applMgn {
+    margin-top: 5%;
+}
+.applMgn a {
+    width: 100%;
+}
+
+#footer .container{
+    margin-bottom: -15px;
+}
+
+#footer .row {
+    margin-bottom: 7px;
+}
+/*#footer {*/
+    /*max-height:130px;*/
+/*}*/
