@@ -23,17 +23,23 @@
                 </ul>
                 <ul class="right hide-on-med-and-down">
                     <li>
-                        <a href="#home" class="spla"><button class="btn-small waves-effect waves-dark grey">Events</button></a>
+                        <a href="/events" class="spla"><button class="btn-small waves-effect waves-dark grey">Events</button></a>
                     </li>
                     <li>
-                        <a href="#home" class="spla"><button class="btn-small waves-effect waves-dark grey">Blogs</button></a>
+                        <a href="/blog" class="spla"><button class="btn-small waves-effect waves-dark grey">Blogs</button></a>
+                    </li>
+                    <% if (currentUser != undefined) { %>
+                    <li>
+                        <a href="/user" class="spla"><button class="btn-small waves-effect waves-dark grey">My Events</button></a>
                     </li>
                     <li>
-                        <a href="#home" class="spla"><button class="btn-small waves-effect waves-dark grey">My Profile</button></a>
+                        <a href="/logout" class="spla"><button class="btn-small waves-effect waves-dark grey">Logout</button></a>
                     </li>
+                    <% } else { %>
                     <li>
-                        <a href="#home" class="spla"><button class="btn-small waves-effect waves-dark grey">Users</button></a>
+                        <a href="/login" class="spla"><button class="btn-small waves-effect waves-dark grey">Login</button></a>
                     </li>
+                    <% } %>
                 </ul>
             </div>
         </div>

@@ -104,7 +104,6 @@ app.get("/", function(req,res){
 });
 
 app.get("/user", ensureLoggedIn(), function(req,res){
-    console.log("chalna chahiye");
     res.render("calendar");
 });
 
