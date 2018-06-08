@@ -308,9 +308,10 @@ function checkOwner() {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 5000,
+    ip   = process.env.IP || "localhost";
 
 
-app.listen(port, function(){
+app.listen(port, ip, function(){
     console.log("Running on port " + port);
 });
