@@ -202,6 +202,11 @@ app.post("/events", ensureLoggedIn(), function(req,res){
 
 
 app.put("/events/:id/edit", function(req, res){
+
+    if (req.isAuthenticated()) {
+
+    }
+
     var startArr = req.body.startTime.split('T');
     var endArr = req.body.endTime.split('T');
     var toUpdate = {
@@ -250,11 +255,14 @@ app.get("/events/:id", function(req,res){
     });
 });
 
-app.get("/events/:id/edit", function(req,res){
+app.get("/events/:id/edit", ensureLoggedIn(), function(req,res){
+
     Event.findById(req.params.id, function(err, event){
             if(err) res.redirect("/events");
             else {
+                if (event.author.id.equals(req.user._id))
                 res.render("Events/edit",{event:event, currentUser: req.user});
+                else console.log("Not your event sorry");
             }
         });
 });
