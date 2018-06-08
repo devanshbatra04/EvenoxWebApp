@@ -201,7 +201,7 @@ app.post("/events", ensureLoggedIn(), function(req,res){
 });
 
 
-app.put("/events/:id/edit", function(req, res){
+app.put("/events/:id/edit",checkOwner(), function(req, res){
 
     if (req.isAuthenticated()) {
 
@@ -255,7 +255,7 @@ app.get("/events/:id", function(req,res){
     });
 });
 
-app.get("/events/:id/edit", ensureLoggedIn(), function(req,res){
+app.get("/events/:id/edit", checkOwner(), function(req,res){
 
     Event.findById(req.params.id, function(err, event){
             if(err) res.redirect("/events");
@@ -268,7 +268,7 @@ app.get("/events/:id/edit", ensureLoggedIn(), function(req,res){
 });
 
 
-app.delete("/events/:id", function(req,res){
+app.delete("/events/:id",checkOwner(), function(req,res){
     Event.findByIdAndRemove(req.params.id, function(err){
         if (err) {
             console.log(err);
@@ -279,6 +279,33 @@ app.delete("/events/:id", function(req,res){
         }
     })
 });
+
+//Check Ownership
+function checkOwner() {
+    return function(req, res, next) {
+        // isAuthenticated is set by `deserializeUser()`
+        if (!req.isAuthenticated || !req.isAuthenticated()) {
+            res.status(401).send({
+                success: false,
+                message: 'You need to be authenticated to access this page!'
+            })
+        } else {
+            Event.findById(req.params.id, function(err, event){
+                if(err) res.redirect("/events");
+                else {
+                    if (event.author.id.equals(req.user._id))
+                        next();
+                    else res.redirect("back");
+                }
+            });
+
+
+        }
+    }
+}
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var port = process.env.PORT || 5000;
