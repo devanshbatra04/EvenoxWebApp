@@ -5,7 +5,8 @@ const express                = require('express'),
     localStrategy            = require('passport-local'),
     passportLocalMongoose    = require('passport-local-mongoose'),
     FacebookStrategy         = require('passport-facebook').Strategy,
-    path                     = require('path');
+    path                     = require('path'),
+    methodOverride           = require('method-override');
 
 var User = require('./models/user'),
     Event = require('./models/event');
@@ -18,6 +19,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/public', express.static(__dirname + '/public'));
+app.use(methodOverride("_method"));
 
 var fbLoginInfo = {
     "cookieSecret":"e33cf67dd274b91847ae9991359e2abf",
@@ -117,12 +119,12 @@ app.post("/register", function(req,res){
     }), req.body.password, function(err, user){
         if (err){
             console.log(err);
-            res.render('register', {currentUser: req.user});
+            res.render('Auth/register', {currentUser: req.user});
         }
         else {
             console.log("user registered");
             passport.authenticate("local")(req,res, function(){
-                res.redirect("secret");
+                res.redirect("/events");
             })
         }
     });
@@ -130,11 +132,11 @@ app.post("/register", function(req,res){
 });
 
 app.get("/secret", ensureLoggedIn(), function(req,res){
-    res.render("secret");
+    res.render("Auth/secret");
 });
 
 app.get("/login", function(req,res){
-    res.render('reg-login.ejs', {currentUser: req.user});
+    res.render('Auth/reg-login.ejs', {currentUser: req.user});
 });
 
 app.post('/login', passport.authenticate("local", {
@@ -166,7 +168,7 @@ function ensureLoggedIn() {
 
 
 app.get("/events/new", ensureLoggedIn(), function(req, res){
-    res.render("newEvent", {currentUser: req.user});
+    res.render("Events/newEvent", {currentUser: req.user});
 });
 
 app.post("/events", ensureLoggedIn(), function(req,res){
@@ -179,6 +181,8 @@ app.post("/events", ensureLoggedIn(), function(req,res){
     Event.create({
         name: req.body.eventName,
         location: req.body.location,
+        stDetails: req.body.startTime,
+        endDetails: req.body.endTime,
         startDate: startArr[0],
         startTime: startArr[1],
         endDate: endArr[0],
@@ -197,13 +201,42 @@ app.post("/events", ensureLoggedIn(), function(req,res){
     console.log(req.body);
 });
 
+
+app.put("/events/:id/edit",checkOwner(), function(req, res){
+
+    if (req.isAuthenticated()) {
+
+    }
+
+    var startArr = req.body.startTime.split('T');
+    var endArr = req.body.endTime.split('T');
+    var toUpdate = {
+        name: req.body.eventName,
+        location: req.body.location,
+        stDetails: req.body.startTime,
+        endDetails: req.body.endTime,
+        startDate: startArr[0],
+        startTime: startArr[1],
+        endDate: endArr[0],
+        endTime: endArr[1],
+        description: req.body.Description,
+    };
+    Event.findByIdAndUpdate(req.params.id, toUpdate, function(err, updated){
+        if (err) console.log(err);
+        else console.log(updated);
+        var redirectStringUrl = "/events/" + req.params.id;
+        res.redirect(redirectStringUrl);
+
+    });
+});
+
 app.get('/events', function(req,res){
     Event.find({},function(err, events){
         if (err) {
             console.log(err);
         }
         else {
-            res.render("events", {events: events, currentUser: req.user});
+            res.render("Events/events", {events: events, currentUser: req.user});
         }
 
     });
@@ -217,17 +250,69 @@ app.get("/events/:id", function(req,res){
             console.log(err)
         }
         else {
-            res.render("eventPage", {event: event, currentUser: req.user});
+            res.render("Events/eventPage", {event: event, currentUser: req.user});
         }
 
     });
 });
 
+app.get("/events/:id/edit", checkOwner(), function(req,res){
+
+    Event.findById(req.params.id, function(err, event){
+            if(err) res.redirect("/events");
+            else {
+                if (event.author.id.equals(req.user._id))
+                res.render("Events/edit",{event:event, currentUser: req.user});
+                else console.log("Not your event sorry");
+            }
+        });
+});
+
+
+app.delete("/events/:id",checkOwner(), function(req,res){
+    Event.findByIdAndRemove(req.params.id, function(err){
+        if (err) {
+            console.log(err);
+            res.redirect("/events");
+        }
+        else {
+            res.redirect("/events");
+        }
+    })
+});
+
+//Check Ownership
+function checkOwner() {
+    return function(req, res, next) {
+        // isAuthenticated is set by `deserializeUser()`
+        if (!req.isAuthenticated || !req.isAuthenticated()) {
+            res.status(401).send({
+                success: false,
+                message: 'You need to be authenticated to access this page!'
+            })
+        } else {
+            Event.findById(req.params.id, function(err, event){
+                if(err) res.redirect("/events");
+                else {
+                    if (event.author.id.equals(req.user._id))
+                        next();
+                    else res.redirect("back");
+                }
+            });
+
+
+        }
+    }
+}
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 5000,
+    ip   = process.env.IP || "localhost";
 
 
-app.listen(port, function(){
+app.listen(port, ip, function(){
     console.log("Running on port " + port);
 });

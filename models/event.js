@@ -8,6 +8,8 @@ var eventSchema = mongoose.Schema({
     endDate: String,
     endTime: String,
     description: String,
+    stDetails: String,
+    endDetails: String,
     author : {
         id : {
             type: mongoose.Schema.Types.ObjectId,
