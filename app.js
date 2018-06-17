@@ -123,7 +123,7 @@ app.post("/register", function(req,res){
         else {
             console.log("user registered");
             passport.authenticate("local")(req,res, function(){
-                res.redirect("secret");
+                res.redirect("/events");
             })
         }
     });
