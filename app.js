@@ -308,6 +308,14 @@ function checkOwner() {
 app.get("/blog", function(req,res) {
     res.render('blog/blogLanding');
 });
+app.get("/blog/posts", function(req,res){
+    var posts = [
+        { title: 'Mandir vahi banayenge', content: 'Pappu ko bhagayenge', image:'' },
+        { title: 'Salman Khan Arrested', content: 'Nayi baat sunoge?', image: ''},
+        { title: 'Jab koi shaam dhal jaawe', content: 'jab koi mushkil pad jaave', image:''}
+    ];
+    res.render('blog/blogIndex', {posts:posts});
+});
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
