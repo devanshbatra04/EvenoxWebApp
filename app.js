@@ -306,7 +306,7 @@ function checkOwner() {
 
 /////////////////// BLOG /////////////////////////////
 app.get("/blog", function(req,res) {
-    res.render('blogLanding');
+    res.render('blog/blogLanding');
 });
 
 
