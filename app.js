@@ -345,6 +345,19 @@ app.get("/blog/posts/new", function(req,res){
     res.render('blog/new.ejs', {currentUser: req.user});
 });
 
+app.get("/blog/posts/:id", function(req,res){
+    var id = req.params.id;
+
+    BlogPost.findById(id, function(err, post){
+        if(err) {
+            console.log(err)
+        }
+        else {
+            res.render("blog/show", {post: post, currentUser: req.user});
+        }
+
+    });
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
