@@ -8,6 +8,10 @@
             <strong>
                 <%= post.title %>
             </strong>
+            <% var a ="/blog/posts/"; %>
+            <% var id = post._id %>
+            <% var url = a + id %>
+            <em><a href=<%= url %>>More details</a></em>
         </li>
     <% }) %>
 </ul>
