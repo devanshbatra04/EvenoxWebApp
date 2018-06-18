@@ -1,0 +1,10 @@
+<% include ../partials/header.ejs %>
+<div class="container">
+    <form action="/blog/posts" method="post">
+        <input name="title" type="text" placeholder="title">
+        <textarea name="content" placeholder="content"></textarea>
+        <input type="submit">
+    </form>
+</div>
+
+<% include ../partials/footer.ejs %>

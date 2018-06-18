@@ -9,7 +9,10 @@ const express                = require('express'),
     methodOverride           = require('method-override');
 
 var User = require('./models/user'),
-    Event = require('./models/event');
+
+    Event = require('./models/event'),
+    BlogPost = require('./models/blogPost');
+
 
 mongoose.connect("mongodb://dev:dev@ds237620.mlab.com:37620/evenox");
 
@@ -305,7 +308,57 @@ function checkOwner() {
     }
 }
 
+/////////////////// BLOG /////////////////////////////
+app.get("/blog", function(req,res) {
+    res.render('blog/blogLanding', {currentUser: req.user});
+});
+app.get("/blog/posts", function(req,res){
+    var posts = [
+        { title: 'Mandir vahi banayenge', content: 'Pappu ko bhagayenge', image:'' },
+        { title: 'Salman Khan Arrested', content: 'Nayi baat sunoge?', image: ''},
+        { title: 'Jab koi shaam dhal jaawe', content: 'jab koi mushkil pad jaave', image:''}
+    ];
+    BlogPost.find({}, function(err,posts){
+        if (err) console.log(err);
+        else res.render('blog/blogIndex', {posts:posts, currentUser: req.user});
+    });
+});
+app.post("/blog/posts", ensureLoggedIn(), function(req,res) {
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    BlogPost.create({
+        title: req.body.title,
+        content: req.body.content,
+        author : author
+    }, function(err, event){
+        console.log(event);
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect("/blog/posts");
+        }
+    });
+    console.log(req.body);
+});
+app.get("/blog/posts/new", function(req,res){
+    res.render('blog/new.ejs', {currentUser: req.user});
+});
 
+app.get("/blog/posts/:id", function(req,res){
+    var id = req.params.id;
+
+    BlogPost.findById(id, function(err, post){
+        if(err) {
+            console.log(err)
+        }
+        else {
+            res.render("blog/show", {post: post, currentUser: req.user});
+        }
+
+    });
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
