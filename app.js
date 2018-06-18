@@ -9,7 +9,10 @@ const express                = require('express'),
     methodOverride           = require('method-override');
 
 var User = require('./models/user'),
-    Event = require('./models/event');
+    Event = require('./models/event'),
+    BlogPost = require('./models/blogPost');
+
+
 mongoose.connect("mongodb://localhost/Evenox");
 
 
@@ -316,12 +319,28 @@ app.get("/blog/posts", function(req,res){
     ];
     res.render('blog/blogIndex', {posts:posts, currentUser: req.user});
 });
-app.post("/blog/posts", function(req,res) {
-    res.send("Post Route!");
+app.post("/blog/posts", ensureLoggedIn(), function(req,res) {
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    BlogPost.create({
+        title: req.body.title,
+        content: req.body.content,
+        author : author
+    }, function(err, event){
+        console.log(event);
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect("/blog/posts");
+        }
+    });
+    console.log(req.body);
 });
 app.get("/blog/posts/new", function(req,res){
     res.render('blog/new.ejs', {currentUser: req.user});
-})
+});
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
