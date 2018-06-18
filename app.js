@@ -362,7 +362,7 @@ app.get("/blog/posts/:id", function(req,res){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var port = process.env.PORT || 5000,
-    ip   = process.env.IP || "localhost";
+    ip   = '0.0.0.0';
 
 
 app.listen(port, ip, function(){
