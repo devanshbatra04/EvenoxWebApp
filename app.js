@@ -317,7 +317,10 @@ app.get("/blog/posts", function(req,res){
         { title: 'Salman Khan Arrested', content: 'Nayi baat sunoge?', image: ''},
         { title: 'Jab koi shaam dhal jaawe', content: 'jab koi mushkil pad jaave', image:''}
     ];
-    res.render('blog/blogIndex', {posts:posts, currentUser: req.user});
+    BlogPost.find({}, function(err,posts){
+        if (err) console.log(err);
+        else res.render('blog/blogIndex', {posts:posts, currentUser: req.user});
+    });
 });
 app.post("/blog/posts", ensureLoggedIn(), function(req,res) {
     var author = {
