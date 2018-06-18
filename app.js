@@ -306,7 +306,7 @@ function checkOwner() {
 
 /////////////////// BLOG /////////////////////////////
 app.get("/blog", function(req,res) {
-    res.render('blog/blogLanding');
+    res.render('blog/blogLanding', {currentUser: req.user});
 });
 app.get("/blog/posts", function(req,res){
     var posts = [
@@ -314,8 +314,14 @@ app.get("/blog/posts", function(req,res){
         { title: 'Salman Khan Arrested', content: 'Nayi baat sunoge?', image: ''},
         { title: 'Jab koi shaam dhal jaawe', content: 'jab koi mushkil pad jaave', image:''}
     ];
-    res.render('blog/blogIndex', {posts:posts});
+    res.render('blog/blogIndex', {posts:posts, currentUser: req.user});
 });
+app.post("/blog/posts", function(req,res) {
+    res.send("Post Route!");
+});
+app.get("/blog/posts/new", function(req,res){
+    res.render('blog/new.ejs', {currentUser: req.user});
+})
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
