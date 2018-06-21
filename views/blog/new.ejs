@@ -1,10 +1,43 @@
 <% include ../partials/header.ejs %>
+<script src="//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Editor.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Sanitizer.js"></script>
+<link rel="stylesheet"
+      href="//cdn.rawgit.com/balpha/pagedown/master/demo/browser/demo.css" />
+
+<style>
+    .wmd-button > span {
+        background-image:
+                url('//cdn.rawgit.com/derobins/wmd/master/images/wmd-buttons.png');
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+    }
+    .wmd-preview { margin-bottom: 40px; background-color: #eef;}
+    .wmd-preview p {
+        width:100%;
+    }
+
+</style>
+
 <div class="container">
+
     <form action="/blog/posts" method="post">
         <input name="title" type="text" placeholder="title">
-        <textarea name="content" placeholder="content"></textarea>
+        <div id="wmd-button-bar"></div>
+
+        <textarea name="content" placeholder="content" id="wmd-input" class="wmd-input"></textarea>
+
+
+        <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
         <input type="submit">
     </form>
 </div>
-
+<script>
+    var converter = Markdown.getSanitizingConverter();
+    var editor = new Markdown.Editor(converter);
+    editor.run();
+</script>
 <% include ../partials/footer.ejs %>
