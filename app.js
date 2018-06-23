@@ -16,8 +16,7 @@ var User = require('./models/user'),
     Subscriber = require('./models/subscriber');
 
 
-// mongoose.connect("mongodb://dev:dev@ds237620.mlab.com:37620/evenox");
-mongoose.connect("mongodb://localhost/evenox");
+mongoose.connect("mongodb://dev:dev@ds237620.mlab.com:37620/evenox");
 
 
 var app = express();
@@ -441,5 +440,4 @@ var port = process.env.PORT || 5000,
 
 app.listen(port, ip, function(){
     console.log("Running on port " + port);
-    Subscriber.remove({}, () => console.log("removed"));
 });
