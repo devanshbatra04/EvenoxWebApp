@@ -360,7 +360,7 @@ app.get("/blog/posts/:id", function(req,res){
     });
 });
 
-app.post("/mailNew", (req, res) => {
+app.post("/subscribe", (req, res) => {
         let name = req.body.name;
         let email = req.body.email;
 
