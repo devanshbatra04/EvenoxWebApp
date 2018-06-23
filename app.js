@@ -12,6 +12,7 @@ const express                = require('express'),
 var User = require('./models/user'),
     Event = require('./models/event'),
     BlogPost = require('./models/blogPost');
+    Subscriber = require('./models/subscriber');
 
 
 mongoose.connect("mongodb://localhost/Evenox");
@@ -397,6 +398,27 @@ app.post("/subscribe", (req, res) => {
             // Preview only available when sending through an Ethereal account
             console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
             console.log(info);
+
+            Subscriber.findOne({name, email}, function(err,u){
+                if(!u){
+                    Subscriber.create({
+                        name, email
+                    }, function(err, Subscriber){
+                        if(err) {
+                            console.log(err);
+                        }
+                        else {
+                            console.log(Subscriber);
+                        }
+                    });
+                }
+                else {
+                    console.log("user exists");
+                }
+
+            });
+
+
             res.send(200);
             // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
