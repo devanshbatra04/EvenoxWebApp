@@ -7,6 +7,7 @@ const express                = require('express'),
     FacebookStrategy         = require('passport-facebook').Strategy,
     path                     = require('path'),
     methodOverride           = require('method-override');
+    nodemailer               = require('nodemailer');
 
 var User = require('./models/user'),
     Event = require('./models/event'),
