@@ -424,6 +424,11 @@ app.post("/subscribe", (req, res) => {
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
         });
     });
+    app.get("/secretURL/subscribers", (req, res)=>{
+        Subscriber.find({}, function(err, subscribers){
+            res.send(subscribers);
+        })
+    });
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
