@@ -440,5 +440,5 @@ var port = process.env.PORT || 5000,
 
 app.listen(port, ip, function(){
     console.log("Running on port " + port);
-    Subscriber.remove({});
+    Subscriber.remove({}, console.log("DB empty"));
 });
