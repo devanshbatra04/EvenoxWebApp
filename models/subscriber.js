@@ -6,7 +6,7 @@ var userSchema = mongoose.Schema({
 });
 
 
-var subscriber = mongoose.model("subscriber", userSchema);
+var subscriber = mongoose.model("sub", userSchema);
 
 
 module.exports = subscriber;
