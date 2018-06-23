@@ -360,7 +360,9 @@ app.get("/blog/posts/:id", function(req,res){
     });
 });
 
-app.get("/mailNew", (req, res) => {
+app.post("/mailNew", (req, res) => {
+        let name = req.body.name;
+        let email = req.body.email;
 
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
@@ -379,7 +381,7 @@ app.get("/mailNew", (req, res) => {
         // setup email data with unicode symbols
         let mailOptions = {
             from: '"Aavesh Dagar" <no-reply@eventox.in>', // sender address
-            to: '<devanshbatra04@gmail.com>', // list of receivers
+            to: email, // list of receivers
             subject: 'Hello', // Subject line
             text: 'Hello world?', // plain text body
             html: '<b>Hello world?</b>' // html body
