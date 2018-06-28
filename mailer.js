@@ -23,8 +23,9 @@ module.exports = function(name, email,req, res) {
     let mailOptions = {
         from: '"Aavesh Dagar" <no-reply@eventox.in>', // sender address
         to: email, // list of receivers
-        subject: 'Hello', // Subject line
-        text: 'Welcome To Eventox', // plain text body
+        subject: 'Welcome to Eventox', // Subject line
+        text: 'Eventox is under construction and will be released as soon as possible. You will be the first to know. Eventox is going to be awesome and it will change your event experience , it will make every event experience more exciting.It doesn\'t matter whether you are an Event Organizer , Participant , Sponsor , Event Management Company or a Freelancer. We have something for each one of you.\n' +
+        'Sit tight and wait  because, Organizing and participating in events will be better than ever.', // plain text body
         html: '<!DOCTYPE html>\n' +
         '<html>\n' +
         '<head>\n' +
@@ -135,7 +136,7 @@ module.exports = function(name, email,req, res) {
         '\n' +
         '<!-- HIDDEN PREHEADER TEXT -->\n' +
         '<div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">\n' +
-        '    Thank You For Subscribing to Eventox \n' +
+        '    Thank you for subscribing. We are pleased to have you onboard...\n' +
         '</div>\n' +
         '\n' +
         '<!-- HEADER -->\n' +
@@ -329,7 +330,7 @@ module.exports = function(name, email,req, res) {
         '    </tr>\n' +
         '</table>\n' +
         '</body>\n' +
-        '</html>' // html body
+        '</html>\n'// html body
     };
 
     // send mail with defined transport object
