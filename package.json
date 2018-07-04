@@ -13,6 +13,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "html-pdf": "^2.2.0",
     "method-override": "^2.3.10",
     "mongoose": "^5.1.2",
     "nodemailer": "^4.6.7",
