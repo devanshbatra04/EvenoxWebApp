@@ -369,11 +369,11 @@ app.post("/subscribe", (req, res) => {
     welcomeMail(name, email, req, res);
 
 });
-    app.get("/secretURL/subscribers", (req, res)=>{
-        Subscriber.find({}, function(err, subscribers){
-            res.send(subscribers);
-        })
-    });
+app.get("/secretURL/subscribers", (req, res)=>{
+    Subscriber.find({}, function(err, subscribers){
+        res.send(subscribers);
+    })
+});
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
