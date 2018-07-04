@@ -320,11 +320,6 @@ app.get("/blog", function(req,res) {
     res.render('blog/blogLanding', {currentUser: req.user});
 });
 app.get("/blog/posts", function(req,res){
-    let posts = [
-        { title: 'Mandir vahi banayenge', content: 'Pappu ko bhagayenge', image:'' },
-        { title: 'Salman Khan Arrested', content: 'Nayi baat sunoge?', image: ''},
-        { title: 'Jab koi shaam dhal jaawe', content: 'jab koi mushkil pad jaave', image:''}
-    ];
     BlogPost.find({}, function(err,posts){
         if (err) console.log(err);
         else res.render('blog/blogIndex', {posts:posts, currentUser: req.user});
