@@ -12,6 +12,7 @@ const express                = require('express'),
     ejs                      = require('ejs');
     fs                       = require('fs');
 const pdf = require('html-pdf');
+var QRCode = require('qrcode')
 
 
 var User = require('./models/user'),
@@ -381,11 +382,15 @@ app.get("/generatePdf", (req,res)=>{
     let path = __dirname + '/static/ticket.ejs';
     fs.readFile(path, 'utf8', function (err, data) {
         if (err) { console.log(err); return false; }
+
         let ejs_string = data,
             template = ejs.compile(ejs_string),
             html = template(information);
+
         fs.writeFile(path + '.html', html, function(err) {
-            if(err) { console.log(err); return false }
+            if(err) {
+                console.log(err); return false
+            }
             console.log("HTML created");
             createPdf(path + '.html');
         });
@@ -394,7 +399,7 @@ app.get("/generatePdf", (req,res)=>{
     function createPdf(path){
         const html = fs.readFileSync(require.resolve(path), 'utf8')
 
-        pdf.create(html, {width: '50mm', height: '90mm'}).toStream((err, stream) => {
+        pdf.create(html, {format: "letter"}).toStream((err, stream) => {
             if (err) return res.end(err.stack);
             res.setHeader('Content-type', 'application/pdf');
             stream.pipe(res)
@@ -406,6 +411,11 @@ app.get("/secretURL/subscribers", (req, res)=>{
         res.send(subscribers);
     })
 });
+app.get('/2', function(req,res){
+    QRCode.toDataURL('I am a pony!', function (err, url) {
+        res.render('qr-try');
+    })
+})
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -415,6 +425,6 @@ var port = process.env.PORT || 5000,
 
 
 app.listen(port, ip, function(){
-    console.log(pdf);
+
     console.log("Running on port " + port);
 });
