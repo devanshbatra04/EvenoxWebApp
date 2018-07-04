@@ -9,6 +9,8 @@ const express                = require('express'),
     methodOverride           = require('method-override');
     nodemailer               = require('nodemailer');
     welcomeMail              = require('./mailer');
+    ejs                      = require('ejs');
+    fs                       = require('fs');
 
 var User = require('./models/user'),
     Event = require('./models/event'),
@@ -368,6 +370,28 @@ app.post("/subscribe", (req, res) => {
     console.log(req.body);
     welcomeMail(name, email, req, res);
 
+});
+app.get("/generatePdf", (req,res)=>{
+
+    let information = {
+        name: "ABC"
+    };
+    let path = __dirname + '/static/ticket.ejs';
+    fs.readFile(path, 'utf8', function (err, data) {
+        if (err) { console.log(err); return false; }
+        let ejs_string = data,
+            template = ejs.compile(ejs_string),
+            html = template(information);
+        fs.writeFile(path + '.html', html, function(err) {
+            if(err) { console.log(err); return false }
+            console.log("HTML created");
+            createPdf();
+        });
+    });
+
+    function createPdf(){
+
+    }
 });
 app.get("/secretURL/subscribers", (req, res)=>{
     Subscriber.find({}, function(err, subscribers){
