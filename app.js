@@ -12,10 +12,10 @@ const express                = require('express'),
     ejs                      = require('ejs');
     fs                       = require('fs');
 const pdf = require('html-pdf');
-var QRCode = require('qrcode')
+let QRCode = require('qrcode')
 
 
-var User = require('./models/user'),
+let User = require('./models/user'),
     Event = require('./models/event'),
     BlogPost = require('./models/blogPost');
     Subscriber = require('./models/subscriber');
@@ -24,14 +24,14 @@ var User = require('./models/user'),
 mongoose.connect("mongodb://localhost/Evenox");
 
 
-var app = express();
+let app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/public', express.static(__dirname + '/public'));
 app.use(methodOverride("_method"));
 
-var fbLoginInfo = {
+let fbLoginInfo = {
     "cookieSecret":"e33cf67dd274b91847ae9991359e2abf",
     "facebook":{
     "app_id":"186261948694142",
@@ -67,7 +67,7 @@ passport.use(new FacebookStrategy({
     callbackURL: fbLoginInfo.facebook.callback,
     profileFields:['id', 'displayName', 'emails']},
     function(accessToken, refreshToken, profile, done){
-    var me = new User({
+    let me = new User({
         email: profile.emails[0].value,
         username:profile.displayName,
         name:profile.displayName,
@@ -182,9 +182,9 @@ app.get("/events/new", ensureLoggedIn(), function(req, res){
 });
 
 app.post("/events", ensureLoggedIn(), function(req,res){
-    var startArr = req.body.startTime.split('T');
-    var endArr = req.body.endTime.split('T');
-    var author = {
+    let startArr = req.body.startTime.split('T');
+    let endArr = req.body.endTime.split('T');
+    let author = {
         id: req.user._id,
         username: req.user.username
     };
@@ -218,9 +218,9 @@ app.put("/events/:id/edit",checkOwner(), function(req, res){
 
     }
 
-    var startArr = req.body.startTime.split('T');
-    var endArr = req.body.endTime.split('T');
-    var toUpdate = {
+    let startArr = req.body.startTime.split('T');
+    let endArr = req.body.endTime.split('T');
+    let toUpdate = {
         name: req.body.eventName,
         location: req.body.location,
         stDetails: req.body.startTime,
@@ -234,7 +234,7 @@ app.put("/events/:id/edit",checkOwner(), function(req, res){
     Event.findByIdAndUpdate(req.params.id, toUpdate, function(err, updated){
         if (err) console.log(err);
         else console.log(updated);
-        var redirectStringUrl = "/events/" + req.params.id;
+        let redirectStringUrl = "/events/" + req.params.id;
         res.redirect(redirectStringUrl);
 
     });
@@ -253,7 +253,7 @@ app.get('/events', function(req,res){
 });
 
 app.get("/events/:id", function(req,res){
-    var id = req.params.id;
+    let id = req.params.id;
 
     Event.findById(id, function(err, event){
         if(err) {
@@ -320,7 +320,7 @@ app.get("/blog", function(req,res) {
     res.render('blog/blogLanding', {currentUser: req.user});
 });
 app.get("/blog/posts", function(req,res){
-    var posts = [
+    let posts = [
         { title: 'Mandir vahi banayenge', content: 'Pappu ko bhagayenge', image:'' },
         { title: 'Salman Khan Arrested', content: 'Nayi baat sunoge?', image: ''},
         { title: 'Jab koi shaam dhal jaawe', content: 'jab koi mushkil pad jaave', image:''}
@@ -331,7 +331,7 @@ app.get("/blog/posts", function(req,res){
     });
 });
 app.post("/blog/posts", ensureLoggedIn(), function(req,res) {
-    var author = {
+    let author = {
         id: req.user._id,
         username: req.user.username
     };
@@ -354,7 +354,7 @@ app.get("/blog/posts/new", function(req,res){
 });
 
 app.get("/blog/posts/:id", function(req,res){
-    var id = req.params.id;
+    let id = req.params.id;
 
     BlogPost.findById(id, function(err, post){
         if(err) {
@@ -420,7 +420,7 @@ app.get('/2', function(req,res){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var port = process.env.PORT || 5000,
+let port = process.env.PORT || 5000,
     ip   = '0.0.0.0';
 
 
