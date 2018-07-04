@@ -11,6 +11,8 @@ const express                = require('express'),
     welcomeMail              = require('./mailer');
     ejs                      = require('ejs');
     fs                       = require('fs');
+const pdf = require('html-pdf');
+
 
 var User = require('./models/user'),
     Event = require('./models/event'),
@@ -385,12 +387,18 @@ app.get("/generatePdf", (req,res)=>{
         fs.writeFile(path + '.html', html, function(err) {
             if(err) { console.log(err); return false }
             console.log("HTML created");
-            createPdf();
+            createPdf(path + '.html');
         });
     });
 
-    function createPdf(){
+    function createPdf(path){
+        const html = fs.readFileSync(require.resolve(path), 'utf8')
 
+        pdf.create(html, {width: '50mm', height: '90mm'}).toStream((err, stream) => {
+            if (err) return res.end(err.stack);
+            res.setHeader('Content-type', 'application/pdf');
+            stream.pipe(res)
+        })
     }
 });
 app.get("/secretURL/subscribers", (req, res)=>{
@@ -407,5 +415,6 @@ var port = process.env.PORT || 5000,
 
 
 app.listen(port, ip, function(){
+    console.log(pdf);
     console.log("Running on port " + port);
 });
