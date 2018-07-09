@@ -8,7 +8,8 @@
 </form>
 -->
 <style>
-@import url("https://fonts.googleapis.com/css?family=Gaegu");
+
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans|Gaegu");
 html, body {
   position: relative;
   min-height: 100vh;
@@ -108,12 +109,12 @@ html, body {
   color: rgba(0, 0, 0, 0.4);
 }
 .form-structor .signup .submit-btn {
-  background-color: rgba(0, 0, 0, 0.4);
-  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(16, 125, 255, 0.5);
+  color: #2229;
   border: 0;
-  border-radius: 15px;
+  border-radius: 0px 0px 15px 15px;
   display: block;
-  margin: 15px auto;
+  margin: auto;
   padding: 15px 45px;
   width: 100%;
   font-size: 13px;
@@ -126,6 +127,7 @@ html, body {
 .form-structor .signup .submit-btn:hover {
   transition: all .3s ease;
   background-color: rgba(0, 0, 0, 0.8);
+	color: #ddd7;
 }
 .form-structor .login {
   position: absolute;
@@ -205,12 +207,12 @@ html, body {
   color: rgba(0, 0, 0, 0.4);
 }
 .form-structor .login .center .submit-btn {
-  background-color: #6B92A4;
-  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(16, 125, 255, 0.5);
+  color: #2229;
   border: 0;
-  border-radius: 15px;
+  border-radius: 0px 0px 15px 15px;
   display: block;
-  margin: 15px auto;
+  margin: auto;
   padding: 15px 45px;
   width: 100%;
   font-size: 13px;
@@ -223,6 +225,7 @@ html, body {
 .form-structor .login .center .submit-btn:hover {
   transition: all .3s ease;
   background-color: rgba(0, 0, 0, 0.8);
+	color: #ddd7;
 }
 .form-structor .login.slide-up {
   top: 90%;
@@ -254,7 +257,9 @@ html, body {
 }
 h2{
 	font-size: 12px;
+	margin-bottom:-30px;
 }
+
 </style>
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -263,11 +268,11 @@ h2{
 	<div class="signup">
 		<h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
 		<form class="form-holder">
-			<input type="text" name="username" placeholder="Username">
-            <input type="password" name="password" placeholder="Password">
-            <input type="text" name="name" placeholder="Name">
-            <input type="email" name="email" placeholder="Email-id">
-            <input type="text" name="phone" placeholder="Phone Number">
+			<input type="text" class = "input" name="username" placeholder="Username">
+      <input class = "input" type="password" name="password" placeholder="Password">
+      <input class = "input" type="text" name="name" placeholder="Name">
+      <input class = "input" type="email" name="email" placeholder="Email-id">
+      <input class = "input" type="text" name="phone" placeholder="Phone Number">
 			<input type="submit" class="submit-btn">
 		</form>
 	</div>
