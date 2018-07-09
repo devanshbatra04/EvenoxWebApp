@@ -1,0 +1,25 @@
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/master/qrcode.js"></script>
+
+<div id="qrcode"></div>
+
+<div id="result"></div>
+
+
+<script>
+    var QRId = "https://www.google.co.in"
+    var qrcode = new QRCode("qrcode", {
+        text: QRId,
+        width: 200,
+        height: 200,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+    });
+
+    // get the qr div, then find the canvas element inside it
+    var canvas = document.getElementById('qrcode').querySelector('canvas');
+
+    var dataURL = canvas.toDataURL();
+
+    document.getElementById('result').innerHTML = dataURL;
+</script>

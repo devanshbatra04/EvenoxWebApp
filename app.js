@@ -9,9 +9,13 @@ const express                = require('express'),
     methodOverride           = require('method-override');
     nodemailer               = require('nodemailer');
     welcomeMail              = require('./mailer');
+    ejs                      = require('ejs');
+    fs                       = require('fs');
+const pdf = require('html-pdf');
+let QRCode = require('qrcode')
 
-var User = require('./models/user'),
 
+let User = require('./models/user'),
     Event = require('./models/event'),
     BlogPost = require('./models/blogPost');
     Subscriber = require('./models/subscriber');
@@ -20,14 +24,14 @@ var User = require('./models/user'),
 mongoose.connect("mongodb://dev:dev@ds237620.mlab.com:37620/evenox");
 
 
-var app = express();
+let app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/public', express.static(__dirname + '/public'));
 app.use(methodOverride("_method"));
 
-var fbLoginInfo = {
+let fbLoginInfo = {
     "cookieSecret":"e33cf67dd274b91847ae9991359e2abf",
     "facebook":{
     "app_id":"186261948694142",
@@ -63,7 +67,7 @@ passport.use(new FacebookStrategy({
     callbackURL: fbLoginInfo.facebook.callback,
     profileFields:['id', 'displayName', 'emails']},
     function(accessToken, refreshToken, profile, done){
-    var me = new User({
+    let me = new User({
         email: profile.emails[0].value,
         username:profile.displayName,
         name:profile.displayName,
@@ -178,9 +182,9 @@ app.get("/events/new", ensureLoggedIn(), function(req, res){
 });
 
 app.post("/events", ensureLoggedIn(), function(req,res){
-    var startArr = req.body.startTime.split('T');
-    var endArr = req.body.endTime.split('T');
-    var author = {
+    let startArr = req.body.startTime.split('T');
+    let endArr = req.body.endTime.split('T');
+    let author = {
         id: req.user._id,
         username: req.user.username
     };
@@ -214,9 +218,9 @@ app.put("/events/:id/edit",checkOwner(), function(req, res){
 
     }
 
-    var startArr = req.body.startTime.split('T');
-    var endArr = req.body.endTime.split('T');
-    var toUpdate = {
+    let startArr = req.body.startTime.split('T');
+    let endArr = req.body.endTime.split('T');
+    let toUpdate = {
         name: req.body.eventName,
         location: req.body.location,
         stDetails: req.body.startTime,
@@ -230,7 +234,7 @@ app.put("/events/:id/edit",checkOwner(), function(req, res){
     Event.findByIdAndUpdate(req.params.id, toUpdate, function(err, updated){
         if (err) console.log(err);
         else console.log(updated);
-        var redirectStringUrl = "/events/" + req.params.id;
+        let redirectStringUrl = "/events/" + req.params.id;
         res.redirect(redirectStringUrl);
 
     });
@@ -249,7 +253,7 @@ app.get('/events', function(req,res){
 });
 
 app.get("/events/:id", function(req,res){
-    var id = req.params.id;
+    let id = req.params.id;
 
     Event.findById(id, function(err, event){
         if(err) {
@@ -316,18 +320,13 @@ app.get("/blog", function(req,res) {
     res.render('blog/blogLanding', {currentUser: req.user});
 });
 app.get("/blog/posts", function(req,res){
-    var posts = [
-        { title: 'Mandir vahi banayenge', content: 'Pappu ko bhagayenge', image:'' },
-        { title: 'Salman Khan Arrested', content: 'Nayi baat sunoge?', image: ''},
-        { title: 'Jab koi shaam dhal jaawe', content: 'jab koi mushkil pad jaave', image:''}
-    ];
     BlogPost.find({}, function(err,posts){
         if (err) console.log(err);
         else res.render('blog/blogIndex', {posts:posts, currentUser: req.user});
     });
 });
 app.post("/blog/posts", ensureLoggedIn(), function(req,res) {
-    var author = {
+    let author = {
         id: req.user._id,
         username: req.user.username
     };
@@ -350,7 +349,7 @@ app.get("/blog/posts/new", function(req,res){
 });
 
 app.get("/blog/posts/:id", function(req,res){
-    var id = req.params.id;
+    let id = req.params.id;
 
     BlogPost.findById(id, function(err, post){
         if(err) {
@@ -370,19 +369,57 @@ app.post("/subscribe", (req, res) => {
     welcomeMail(name, email, req, res);
 
 });
-    app.get("/secretURL/subscribers", (req, res)=>{
-        Subscriber.find({}, function(err, subscribers){
-            res.send(subscribers);
-        })
+app.get("/generatePdf", (req,res)=>{
+
+    let information = {
+        name: "ABC"
+    };
+    let path = __dirname + '/static/ticket.ejs';
+    fs.readFile(path, 'utf8', function (err, data) {
+        if (err) { console.log(err); return false; }
+
+        let ejs_string = data,
+            template = ejs.compile(ejs_string),
+            html = template(information);
+
+        fs.writeFile(path + '.html', html, function(err) {
+            if(err) {
+                console.log(err); return false
+            }
+            console.log("HTML created");
+            createPdf(path + '.html');
+        });
     });
+
+    function createPdf(path){
+        const html = fs.readFileSync(require.resolve(path), 'utf8')
+
+        pdf.create(html, {format: "letter"}).toStream((err, stream) => {
+            if (err) return res.end(err.stack);
+            res.setHeader('Content-type', 'application/pdf');
+            stream.pipe(res)
+        })
+    }
+});
+app.get("/secretURL/subscribers", (req, res)=>{
+    Subscriber.find({}, function(err, subscribers){
+        res.send(subscribers);
+    })
+});
+app.get('/2', function(req,res){
+    QRCode.toDataURL('I am a pony!', function (err, url) {
+        res.render('qr-try');
+    })
+})
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var port = process.env.PORT || 5000,
+let port = process.env.PORT || 5000,
     ip   = '0.0.0.0';
 
 
 app.listen(port, ip, function(){
+
     console.log("Running on port " + port);
 });
