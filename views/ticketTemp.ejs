@@ -2,8 +2,50 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/css/bootstrap-grid-only.css">
+    <style>
+        #qrcode img{
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4">
+            One of three columns
+        </div>
 
+
+
+    </div>
+    <div class="row">
+
+
+            <div id="qrcode">
+                <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/master/qrcode.js"></script>
+                <script>
+                    var QRId = "https://www.google.co.in"
+                    var qrcode = new QRCode("qrcode", {
+                        text: QRId,
+                        width: 200,
+                        height: 200,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
+
+                    // get the qr div, then find the canvas element inside it
+                    var canvas = document.getElementById('qrcode').querySelector('canvas');
+
+                    var dataURL = canvas.toDataURL();
+
+                    // document.getElementById('result').innerHTML = dataURL;
+                </script>
+            </div>
+
+    </div>
+
+</div>
 </body>
 </html>
