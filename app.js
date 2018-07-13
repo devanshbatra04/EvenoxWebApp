@@ -412,6 +412,9 @@ app.get('/2', function(req,res){
     })
 })
 
+app.get('/tryShow', function(req,res){
+    res.render('Events/show', {currentUser: req.user});
+})
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
