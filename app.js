@@ -424,7 +424,9 @@ app.get('/e', (req, res)=>{
 })
 
 app.get('/enroll/:event_id', ensureLoggedIn(), function(req, res) {
-    res.render("tickets/getTicket", {currentUser: req.user})
+    Event.findById(req.params.event_id, function(err, event){
+        res.render("tickets/getTicket", {currentUser: req.user, event: event})
+    });
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
