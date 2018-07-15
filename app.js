@@ -150,14 +150,16 @@ app.get("/login", function(req,res){
     {
         res.redirect('/events');
     }
-    res.render('Auth/reg-login.ejs', {currentUser: req.user});
+    else {
+        res.render('Auth/reg-login.ejs', {currentUser: req.user})
+    }
 });
 
 app.post('/login', passport.authenticate("local", {
-    successRedirect : "/events",
     failureRedirect: "/login"
 }),function(req,res){
-
+    res.redirect(req.session.returnTo || '/');
+    delete req.session.returnTo;
 });
 
 app.get("/logout",function(req,res){
@@ -169,10 +171,8 @@ function ensureLoggedIn() {
     return function(req, res, next) {
         // isAuthenticated is set by `deserializeUser()`
         if (!req.isAuthenticated || !req.isAuthenticated()) {
-            res.status(401).send({
-                success: false,
-                message: 'You need to be authenticated to access this page!'
-            })
+            req.session.returnTo = req.path;
+            res.redirect("/login");
         } else {
             next()
         }
