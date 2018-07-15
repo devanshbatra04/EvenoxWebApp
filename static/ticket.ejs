@@ -1,3 +1,87 @@
-<h1>
-    Hi <%= name %>
-</h1>
+<% include ../partials/header.ejs %>
+<style>
+     
+     body{
+  background: linear-gradient(135deg, #ffa03a 0%, #ffa03a 51%, #fc7216 75%);
+  text-align:center;
+}
+.container{
+  width: 90%;
+  max-width: 400px;
+  margin:auto;
+  border: 1px solid black;
+  margin: 10px auto;
+  padding:10px;
+  border-radius:15px;
+/*   height: 80vh; */
+}
+.logo{
+  height:100px;
+  width:100px;
+}
+.header{
+  background:linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  margin:auto;
+  margin-top:-11px;
+  width:105.5%;
+  border-radius: 10px 10px 0px 0px;
+  border:1px solid black;
+  padding: 5px;
+}
+.advert{
+  background:linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  margin:auto;
+  margin-bottom:-11px;
+  width:105.5%;
+  border-radius: 0px 0px 10px 10px;
+  border:1px solid black;
+  padding: 5px;
+}
+.QRCode{
+  height:150px;
+  width:150px;
+  border: 1px solid black;
+  text-align:center;
+  margin:auto;
+}
+p{
+  margin: 5px auto;
+}
+a{
+  color: #ccccff;
+}
+     
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class = "container">
+  <div class = "header row">
+    <img class = "logo col s4"></img>
+    <div class = "col s8">
+      <p>One Stop Solution to your Event Problems</p>
+      <a href="eventox.in"> Eventox.in </a>
+    </div>
+  </div>
+  <h4><%= EventName %></h4>
+  <section class = "QRCode"></section>
+  <div class = "details row">
+    <p class = "col s12">Ticket ID: <%= ticket.id %></p>
+    <p class = "col s12">Date & Timing: <%= ticket.date %> <%= ticket.time %></p>
+    <p class = "col s12">  
+      <i class="fa fa-map-o" aria-hidden="true"></i> 
+      <%= ticket.location %>
+    </p>
+    <p class = "col s12">Name - <%= ticket.name %></p>
+    <p class = "col s12">
+      <i class="fa fa-whatsapp" aria-hidden="true"></i> - 
+      <a href = "wa.me/<%= ticket.phone %>" target="_blank"><%= ticket.phone %></a>
+    </p>
+  </div>
+  <div class = "advert row">
+    <img class = "logo col s4"></img>
+    <div class = "col s8">
+      <p>Waiting for your food...<br>Place an order online using Grubx</p>
+      <a href="#"> GRUBX </a>
+    </div>
+  </div>
+</div>
+<% include ../partials/footer.ejs %>
