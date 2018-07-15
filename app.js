@@ -146,11 +146,15 @@ app.get("/secret", ensureLoggedIn(), function(req,res){
 });
 
 app.get("/login", function(req,res){
+    if (req.isAuthenticated())
+    {
+        res.redirect('/events');
+    }
     res.render('Auth/reg-login.ejs', {currentUser: req.user});
 });
 
 app.post('/login', passport.authenticate("local", {
-    successRedirect : "/secret",
+    successRedirect : "/events",
     failureRedirect: "/login"
 }),function(req,res){
 
