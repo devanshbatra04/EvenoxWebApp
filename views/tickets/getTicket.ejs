@@ -87,7 +87,7 @@
     </div>
     <div class="row">
             <div class="event-name">
-                Delhi University North-Campus Freshers
+                <%= event.name %>
 
             </div>
 
@@ -117,14 +117,14 @@
     <div id="mainContent" class="row">
         <div style="margin:0 auto">
             <p class="cust-detail" style="text-align: center">
-                Name: Aavesh Dagar
+                Name: <%= currentUser.name %>
             </p>
             <p class="event-details" style="text-align: center">
             <p class="event-location" style="text-align: center">
-                Event-Location: Rathwar Park, Delhi
+                Event-Location: <%= event.location %>
             </p>
             <p class="event-time" style="text-align: center">
-                Timings: 10am - 9pm
+                Start-Time: <%= event.startTime %> on <%= event.startDate%>
             </p>
             </p>
         </div>
