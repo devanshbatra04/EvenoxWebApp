@@ -5,9 +5,8 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html>
-<% include ../partials/header.ejs %>
 	<head>
-		<title>Freshers' Party</title>
+		<title><%= event.name%> | Eventox</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="../../public/assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -19,8 +18,7 @@
 
 		<!-- Header -->
 			<header id="header" class="alt">
-				<h1><a href="index.html">North Campus Freshers' Party</a></h1>
-				<a href="#nav">Menu</a>
+				<h1><a href="index.html"><%= event.name %></a></h1>
 			</header>
 
 		<!-- Nav -->
@@ -35,10 +33,10 @@
 		<!-- Banner -->
 			<section id="banner">
 				<i class="icon fa-diamond"></i>
-				<h2>[Event1]</h2>
-				<p>Gear up for the best party you've ever been to!</p>
+				<h2><%= event.name %></h2>
+				<p><%= event.description %></p>
 				<ul class="actions">
-					<li><a href="#" class="button big special">Tickets available</a></li>
+					<li><a href="#" class="button big special">Get Your Ticket Now</a></li>
 				</ul>
 			</section>
 
@@ -49,7 +47,10 @@
 						<span class="image"><img src="../../public/images/pic01.jpg" alt="" /></span>
 						<div class="content">
 							<h2>Time & Date</h2>
-							<p> <span class = "date"> XX:XX XM DD/MM/YYYY </span> <br> Weather out maybe hot and humid but you won't be sweating from the heat is our gaurantee.</p>
+							<p> <span class = "date"> The event starts on <%= event.startDate %> at <%= event.startTime %>
+									<br>
+									The event will end on <%= event.endDate %> at <%= event.endTime%>
+								</span></p>
 							<ul class="actions" style= "text-align:center;">
 								<li>
 									<a href="#" class="button alt">More</a>
@@ -61,7 +62,7 @@
 						<span class="image"><img src="../../public/images/pic02.jpg" alt="" /></span>
 						<div class="content">
 							<h2>Venue & How do You Get Here?</h2>
-							<p>XXXX Banquet. <br> You can arrive by car or get to nearest metro station (xxxx/)</p>
+							<p><%= event.location %> <br> You can arrive by car or get to nearest metro station (xxxx/)</p>
 							<ul class="actions" style= "text-align:center;">
 								<li>
 									<a href="#" class="button alt">More</a>
@@ -109,31 +110,7 @@
 
 		<!-- Four -->
 			<section id="four" class="wrapper style2 special">
-				<div class="inner">
-					<header class="major narrow">
-						<h2>Get in touch</h2>
-						<p>Need more information? Feel free to contact us.</p>
-					</header>
-					<form action="#" method="POST">
-						<div class="container 75%">
-							<div class="row uniform 50%">
-								<div class="6u 12u$(xsmall)">
-									<input name="name" placeholder="Name" type="text" />
-								</div>
-								<div class="6u$ 12u$(xsmall)">
-									<input name="email" placeholder="Email" type="email" />
-								</div>
-								<div class="12u$">
-									<textarea name="message" placeholder="Message" rows="4"></textarea>
-								</div>
-							</div>
-						</div>
-						<ul class="actions">
-							<li><input type="submit" class="special" value="Submit" /></li>
-							<li><input type="reset" class="alt" value="Reset" /></li>
-						</ul>
-					</form>
-				</div>
+
 			</section>
 
 		<!-- Footer -->
@@ -166,5 +143,4 @@
 			<script src="../../public/assets/js/main.js"></script>
 
 	</body>
-  <% include ../partials/header.ejs %>
 </html>

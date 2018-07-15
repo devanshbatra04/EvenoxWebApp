@@ -260,7 +260,7 @@ app.get("/events/:id", function(req,res){
             console.log(err)
         }
         else {
-            res.render("Events/eventPage", {event: event, currentUser: req.user});
+            res.render("Events/EventTemplate", {event: event, currentUser: req.user});
         }
 
     });
@@ -414,6 +414,9 @@ app.get('/2', function(req,res){
 
 app.get('/t', (req, res)=> {
     res.render('ticketTemp')
+})
+app.get('/e', (req, res)=>{
+    res.render('Events/EventTemplate');
 })
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
