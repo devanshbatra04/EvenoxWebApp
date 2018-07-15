@@ -422,6 +422,10 @@ app.get('/t', (req, res)=> {
 app.get('/e', (req, res)=>{
     res.render('Events/EventTemplate');
 })
+
+app.get('/enroll/:event_id', ensureLoggedIn(), function(req, res) {
+    res.render("tickets/getTicket", {currentUser: req.user})
+});
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 let port = process.env.PORT || 5000,

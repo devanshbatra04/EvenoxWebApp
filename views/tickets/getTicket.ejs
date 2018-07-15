@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/bootstrap-grid-only.css">
+    <!--<script-->
+            <!--src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->
+            <!--integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="-->
+            <!--crossorigin="anonymous"></script>-->
+    <style>
+        #qrcode img{
+            display: block;
+            margin: 0 auto;
+        }
+        html{
+            /*max-width:800px;*/
+            margin: 0 auto;
+            /*max-width:800px;*/
+        }
+        body{
+            /*margin: 0 auto;*/
+            width: 100%;
+            /*max-width:800px;*/
+        }
+        body > .container{
+            position: relative;
+            /*width: 100vh;*/
+            background: linear-gradient(#FF8C3D , #FF911C 90%);
+            /*background-color: #FF911C;*/
+            max-width:800px;
+            min-height:100vh;
+        }
+        body {
+
+            /*background-color:#FFD39B;*/
+        }
+        .event-name{
+            margin: 0 auto;
+            font-size: 2.4em;
+            max-width:256px;
+            text-align: center;
+            font-weight: 600;
+            color:#f4f7f6;
+        }
+        #mainContent{
+            font-size: 1.4em;
+            color:#f4f4f4
+        }
+        .header-content{
+            font-size:2.0em;
+        }
+        @media screen and (max-width: 480px) {
+            .header-content{
+                font-size:5vw;
+            }
+            .eventox-logo img {
+                width: 100% !important;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="eventox-logo" style="
+                /*padding-top:100%;*/
+                        "
+            >
+                <img src="/public/eventox-logo.jpg" style="display:block; width:auto; max-height: 140px; margin: 0 auto">
+
+            </div>
+        </div>
+        <div class="col-xs-8 header-content" >
+            <div>
+                One Stop Solution to your event problems
+            </div>
+            <div>
+                Eventox.in
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="row">
+            <div class="event-name">
+                Delhi University North-Campus Freshers
+
+            </div>
+
+            <div id="qrcode">
+                <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/master/qrcode.js"></script>
+                <script>
+                    var QRId = "https://www.google.co.in"
+                    var qrcode = new QRCode("qrcode", {
+                        text: QRId,
+                        width: 200,
+                        height: 200,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
+
+                    // get the qr div, then find the canvas element inside it
+                    var canvas = document.getElementById('qrcode').querySelector('canvas');
+
+                    var dataURL = canvas.toDataURL();
+
+                    // document.getElementById('result').innerHTML = dataURL;
+                </script>
+            </div>
+
+    </div>
+    <div id="mainContent" class="row">
+        <div style="margin:0 auto">
+            <p class="cust-detail" style="text-align: center">
+                Name: Aavesh Dagar
+            </p>
+            <p class="event-details" style="text-align: center">
+            <p class="event-location" style="text-align: center">
+                Event-Location: Rathwar Park, Delhi
+            </p>
+            <p class="event-time" style="text-align: center">
+                Timings: 10am - 9pm
+            </p>
+            </p>
+        </div>
+
+    </div>
+    <div class="row">
+        <button id="cmd">Generate PDF</button>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
+        <script>
+            window.onload = function() {
+                w = window.outerWidth;
+                h = window.outerHeight;
+                console.log(w);
+                var doc = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'pt',
+                    format: [w, h]
+                });
+                var specialElementHandlers = {
+                    '#editor': function (element, renderer) {
+                        return true;
+                    }
+                };
+
+                document.getElementById('cmd').onclick= function () {
+                    // doc.fromHTML($('#content').html(), 15, 15, {
+                    //     'width': 170,
+                    //     'elementHandlers': specialElementHandlers
+                    // });
+                    // doc.save('sample-file.pdf');
+                    a = document.body;
+                    // a.style.maxWidth = 'unset';
+                    console.log(a);
+                    doc.addHTML(a, function () {
+                        doc.save('ticket_temp.pdf');
+                    });
+                };
+            }
+            // This code is collected but useful, click below to jsfiddle link.
+        </script>
+    </div>
+
+</div>
+</body>
+</html>
