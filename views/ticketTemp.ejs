@@ -36,8 +36,23 @@
         }
         .event-name{
             margin: 0 auto;
-            font-size: 1.6em;
+            font-size: 2.4em;
             max-width:256px;
+            text-align: center;
+            font-weight: 600;
+            color:#f4f7f6;
+        }
+        #mainContent{
+            font-size: 1.4em;
+            color:#f4f4f4
+        }
+        .header-content{
+            font-size:2.0em;
+        }
+        @media screen and (max-width: 480px) {
+            .header-content{
+                font-size:5vw;
+            }
         }
     </style>
 </head>
@@ -45,16 +60,15 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-4">
-            <div style="
-                width:100%;
-                padding-top:100%;
-                background-color: blue;
+            <div class="eventox-logo" style="
+                /*padding-top:100%;*/
                         "
             >
+                <img src="/public/eventox-logo.jpg" style="display:block; width:auto; max-height: 140px; margin: 0 auto">
 
             </div>
         </div>
-        <div class="col-xs-8">
+        <div class="col-xs-8 header-content" >
             <div>
                 One Stop Solution to your event problems
             </div>
@@ -94,6 +108,22 @@
                     // document.getElementById('result').innerHTML = dataURL;
                 </script>
             </div>
+
+    </div>
+    <div id="mainContent" class="row">
+        <div style="margin:0 auto">
+            <p class="cust-detail" style="text-align: center">
+                Name: Aavesh Dagar
+            </p>
+            <p class="event-details" style="text-align: center">
+            <p class="event-location" style="text-align: center">
+                Event-Location: Rathwar Park, Delhi
+            </p>
+            <p class="event-time" style="text-align: center">
+                Timings: 10am - 9pm
+            </p>
+            </p>
+        </div>
 
     </div>
     <div class="row">
