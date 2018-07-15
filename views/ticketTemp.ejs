@@ -131,8 +131,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
         <script>
             window.onload = function() {
-                w = window.innerWidth;
-                h = window.innerHeight;
+                w = window.outerWidth;
+                h = window.outerHeight;
                 console.log(w);
                 var doc = new jsPDF({
                     orientation: 'portrait',
@@ -155,7 +155,7 @@
                     // a.style.maxWidth = 'unset';
                     console.log(a);
                     doc.addHTML(a, function () {
-                        doc.save('*.pdf');
+                        doc.save('ticket_temp.pdf');
                     });
                 };
             }
