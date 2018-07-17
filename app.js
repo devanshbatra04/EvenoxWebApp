@@ -21,7 +21,7 @@ let User = require('./models/user'),
     Subscriber = require('./models/subscriber');
 
 
-mongoose.connect("mongodb://dev:dev@ds237620.mlab.com:37620/evenox");
+mongoose.connect("mongodb://admin:admin123@ds141221.mlab.com:41221/eventox");
 
 
 let app = express();
