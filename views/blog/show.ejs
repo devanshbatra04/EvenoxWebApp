@@ -1,16 +1,21 @@
 <% include ../partials/header.ejs %>
-<h1><%= post.name%></h1>
-<h2>Listed By: <%= post.author.username %></h2>
 
-<div>
-    <%= post.content%>
+<div class="post-show">
+	<div class="post-head">
+		<%= post.title %>
+	</div>
+	<div class="post-options">
+		Posted by : <%= post.author.username %>
+		<% if(currentUser && currentUser._id.equals(post.author.id)){ %>
+		<form action="/blog/posts/<%= post._id %>?_method=DELETE" method="POST">
+			<a href="/blog/posts/<%= post._id %>/edit"><i class="fas fa-pencil-alt"></i></a>
+		    <button><i class="fas fa-trash-alt"></i></button>
+		</form>
+		<% } %>
+	</div>
+	<div class="post-body">
+		<%= post.content %>
+	</div>
 </div>
-<% var i = "/blog/posts/" + post._id + "/edit"; %>
-<form action="/blog/posts/<%= post._id %>?_method=DELETE" method="POST" >
-    <button>
-        DELETE
-    </button>
-</form>
 
-<h2><a href=<%= i %>>Edit Event</a></h2>
 <% include ../partials/footer.ejs %>

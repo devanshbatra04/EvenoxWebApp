@@ -42,20 +42,22 @@
 
 <div class="container correct">
 
-    <form action="/blog/posts" method="post">
-        <input name="title" type="text" placeholder="title">
+    <form action="/blog/posts/<%= post._id %>/edit?_method=PUT" method="post">
+        <input name="title" type="text" placeholder="title" value="<%= post.title %>">
         <div id="wmd-button-bar"></div>
 
-        <textarea name="content" placeholder="content" id="wmd-input" class="wmd-input"></textarea>
+        <textarea name="content" placeholder="content" id="wmd-input" class="wmd-input"><%= post.content %></textarea>
 
 
         <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
         <input type="submit">
     </form>
 </div>
+
 <script>
     var converter = Markdown.getSanitizingConverter();
     var editor = new Markdown.Editor(converter);
     editor.run();
 </script>
+
 <% include ../partials/footer.ejs %>
