@@ -320,9 +320,6 @@ function checkOwner() {
 }
 
 /////////////////// BLOG /////////////////////////////
-app.get("/blog", function(req,res) {
-    res.render('blog/blogLanding', {currentUser: req.user});
-});
 app.get("/blog/posts", function(req,res){
     BlogPost.find({}, function(err,posts){
         if (err) console.log(err);
@@ -348,10 +345,9 @@ app.post("/blog/posts", ensureLoggedIn(), function(req,res) {
     });
     console.log(req.body);
 });
-app.get("/blog/posts/new", function(req,res){
+app.get("/blog/posts/new", ensureLoggedIn(), function(req,res){
     res.render('blog/new.ejs', {currentUser: req.user});
 });
-
 app.get("/blog/posts/:id", function(req,res){
     let id = req.params.id;
 
@@ -364,6 +360,33 @@ app.get("/blog/posts/:id", function(req,res){
         }
 
     });
+});
+app.get("/blog/posts/:id/edit", ensureLoggedIn(), function(req, res){
+    BlogPost.findById(req.params.id, function(err, post){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("blog/edit", {post: post, currentUser: req.user});
+        }
+
+    });
+});
+app.put("/blog/posts/:id/edit", ensureLoggedIn(), function(req, res){
+    BlogPost.findByIdAndUpdate(req.params.id, {$set:{title: req.body.title, content: req.body.content}}, function(err, updated){
+        if(err){
+            console.log(err);
+        } else {
+            res.redirect("/blog/posts/"+req.params.id);
+        }
+    })
+});
+app.delete("/blog/posts/:id", ensureLoggedIn(), function(req, res){
+    BlogPost.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            console.log(err);
+        }
+        res.redirect("/blog/posts");
+    })
 });
 
 app.post("/subscribe", (req, res) => {

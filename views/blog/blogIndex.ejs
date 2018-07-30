@@ -1,18 +1,23 @@
 <% include ../partials/header.ejs %>
 
-<h1>All posts</h1>
+<div class="banner banner1-3">
+    <h1>All blog posts here</h1>
+    <a href="/blog/posts/new">Create new post</a>
+</div>
 
-<ul>
+<div class="posts">
     <% posts.forEach(function(post){ %>
-        <li>
-            <strong>
-                <%= post.title %>
-            </strong>
+    <div class="post">
+        <h2><%= post.title %></h2>
+        <div>
+            <p><%= post.content.substring(0, 200) %>...</p>
             <% var a ="/blog/posts/"; %>
             <% var id = post._id %>
             <% var url = a + id %>
-            <em><a href=<%= url %>>More details</a></em>
-        </li>
+            <a href=<%= url %>>Read more</a>
+        </div>
+    </div>
     <% }) %>
-</ul>
+</div>
+
 <% include ../partials/footer.ejs %>

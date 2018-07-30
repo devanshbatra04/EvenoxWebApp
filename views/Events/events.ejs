@@ -1,24 +1,31 @@
 <% include ../partials/header.ejs %>
 
-
-
-<h1>Events will appear here</h1>
-
-<a href="/events/new">List Your Event Today!</a>
-
-<% for(var i = 0 ; i < events.length; i++) { %>
-
-<div>
-    <h2><%= events[i].name %></h2>
-    <div>
-        <strong>Location: </strong> <%= events[i].location %>
-        <strong>Start Date and Time :</strong> <%= events[i].startDate %> <%= events[i].startTime %>
-        <% var a ="/events/"; %>
-        <% var id = events[i]._id %>
-        <% var url = a + id %>
-        <em><a href=<%= url %>>More details</a></em>
-    </div>
+<div class="banner">
+	<h1>Events will appear here</h1>
+	<a href="/events/new">List Your Event Today!</a>
 </div>
 
-<% } %>
+<div class="events">
+<% events.forEach(event => { %>
+
+<div class="event">
+	<div class="event-detail">
+	    <h2><%= event.name %></h2>
+	    <div>
+	        <strong>Location: </strong> <%= event.location %><br>
+	        <strong>Start Date and Time :</strong> <%= event.startDate %> <%= event.startTime %><br>
+	        <% var a ="/events/"; %>
+	        <% var id = event._id %>
+	        <% var url = a + id %>
+	        <a href=<%= url %>>More details</a>
+	    </div>
+	</div>
+	<div class="event-pic">
+		<img src="/public/images/banner.jpg">
+	</div>
+</div>
+
+<% }) %>
+</div>
+
 <% include ../partials/footer.ejs %>
