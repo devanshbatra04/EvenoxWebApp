@@ -116,10 +116,6 @@ app.get("/", function(req,res){
     else res.render("landing", {currentUser: req.user});
 });
 
-app.get("/user", ensureLoggedIn(), function(req,res){
-    res.render("calendar");
-});
-
 app.post("/register", function(req,res){
     User.register(new User({
         username : req.body.username,
@@ -179,12 +175,27 @@ function ensureLoggedIn() {
     }
 }
 
+/////////////////////////My Profile Routes///////////////////////////////////////////
+app.get("/user/calendar", ensureLoggedIn(), function(req,res){
+    res.render("Profile/calendar", {currentTab: "calendar"});
+});
+app.get("/user/dashboard", ensureLoggedIn(), function(req,res){
+    res.render("Profile/dashboard", {currentTab: "dashboard"});
+});
+app.get("/user/tickets", ensureLoggedIn(), function(req,res){
+    res.render("Profile/tickets", {currentTab: "tickets"});
+});
+app.get("/user/certificates", ensureLoggedIn(), function(req,res){
+    res.render("Profile/certificates", {currentTab: "certificates"});
+});
+app.get("/user/events", ensureLoggedIn(), function(req,res){
+    res.render("Profile/events", {currentTab: "events"});
+});
 
-
+/////////////////////////Events Routes///////////////////////////////////////////
 app.get("/events/new", ensureLoggedIn(), function(req, res){
     res.render("Events/newEvent", {currentUser: req.user});
 });
-
 app.post("/events", ensureLoggedIn(), function(req,res){
     let startArr = req.body.startTime.split('T');
     let endArr = req.body.endTime.split('T');

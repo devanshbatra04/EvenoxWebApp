@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eventox Web App</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/public/profile.css">
+</head>
+<body>
+<div class="head">
+	<div class="head-user">
+		<img src="https://avatars2.githubusercontent.com/u/34133332">
+		<a href="">Edit Profile</a>
+	</div>
+	<div class="head-wel">Welcome to Eventox</div>
+	<div class="head-brand">
+		<a href="/"><img src="/public/eventox-logo.jpg"></a>
+	</div>
+</div>
+<div class="panel">
+	<div class="panel-left">
+		<div class="panel-nav">
+			<a class="tab" id="calendar" onclick="switchTab(this)" href="/user/calendar">Calendar</a>
+			<a class="tab" id="dashboard" onclick="switchTab(this)" href="/user/dashboard">Dashboard</a>
+			<a class="tab" id="tickets" onclick="switchTab(this)" href="/user/tickets">Tickets</a>
+			<a class="tab" id="certificates" onclick="switchTab(this)" href="/user/certificates">Certificates</a>
+			<a class="tab" id="events" onclick="switchTab(this)" href="/user/events">Events</a>
+		</div>
+		<script>
+			function switchTab(thistab){
+				[...document.getElementsByClassName("tab")].forEach(tab => {
+					if(tab.classList.contains("nav-active")){
+						tab.classList.remove("nav-active");
+					}
+				})
+				thistab.classList.add("nav-active");
+			}
+	    	<% if(currentTab){ %>
+	    		document.getElementById("<%= currentTab %>").classList.add("nav-active");
+	    	<% } %>
+	    </script>
+		<div class="panel-content">
