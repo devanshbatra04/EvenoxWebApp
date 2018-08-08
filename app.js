@@ -453,14 +453,14 @@ app.get('/2', function(req,res){
 
 app.get('/t', (req, res)=> {
     res.render('ticketTemp')
-})
-app.get('/e', (req, res)=>{
+});
+app.get('/e', (req, res)=> {
     res.render('Events/EventTemplate');
-=======
+});
 app.get('/tryShow', function(req,res){
     res.render('Events/show', {currentUser: req.user});
 
-})
+});
 
 app.get('/enroll/:event_id', ensureLoggedIn(), function(req, res) {
     Event.findById(req.params.event_id, function(err, event){
