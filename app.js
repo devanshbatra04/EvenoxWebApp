@@ -210,11 +210,14 @@ app.post("/intern/apply", function(req, res){
 		}
 	});
 });
-app.get("/secret/dontleak/interns", function(req, res){
+app.get("/intern/apps", function(req, res){
     Intern.find({}, function(err, applications){
         if (err) console.log(err)
         else {
-            res.render('internApps', {applications});
+            if (req.user && req.user.username === "internAdmin")
+            res.render('internApps', {applications, currentUser: req.user});
+            else res.send("only internAdmin allowed")
+
         }
     })
 });
@@ -248,7 +251,7 @@ app.get("/intern/:id/approve", function(req, res){
             if(err) {
                 console.log(err);
             } else {
-                res.redirect("/secret/dontleak/interns");
+                res.redirect("/intern/applied");
             }
         });
     });

@@ -82,7 +82,7 @@
 </style>
 
 <body>
-<a href="/logout">logout</a>
+<% if (currentUser && currentUser.username === "internAdmin") {%>
 <div class="wrapper">
     <h3 style="color: #f8f8ff">
         Awaiting confirmation
@@ -101,6 +101,9 @@
             </div>
             <div class="cell">
                 Email
+            </div>
+            <div class="mobile-no">
+                Contact Number
             </div>
             <div class="cell">
                 approved
@@ -124,6 +127,9 @@
                 <%= data.email %>
             </div>
             <div class="cell">
+                <%= data.mob %>
+            </div>
+            <div class="cell">
                 <%= data.approved %>
             </div>
             <div class="cell">
@@ -135,7 +141,9 @@
     </div>
 
 </div>
-
+<% } else { %>
+Only Intern Admin has access to this route
+<% } %>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </body>
 </html>
