@@ -251,7 +251,7 @@ app.get("/intern/:id/approve", function(req, res){
             if(err) {
                 console.log(err);
             } else {
-                res.redirect("/secret/dontleak/interns");
+                res.redirect("/intern/applied");
             }
         });
     });
