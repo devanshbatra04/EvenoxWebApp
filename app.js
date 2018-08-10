@@ -210,6 +210,15 @@ app.post("/intern/apply", function(req, res){
 		}
 	});
 });
+app.get("/secret/dontleak/interns", function(req, res){
+    Intern.find({}, function(err, applications){
+        if (err) console.log(err)
+        else {
+            res.render('internApps', {applications});
+        }
+    })
+});
+
 app.post("/intern/:id/approve", function(req, res){
 	Intern.findById(req.params.id, function(err, applicant){
 		if(applicant.approved === false){
@@ -226,6 +235,37 @@ app.post("/intern/:id/approve", function(req, res){
 		});
 	});
 });
+
+
+app.get("/intern/:id/approve", function(req, res){
+    Intern.findById(req.params.id, function(err, applicant){
+        if(applicant.approved === false){
+            var approval = true;
+        } else {
+            var approval = false;
+        }
+        Intern.update({_id: applicant._id}, {$set:{approved: approval}}, function(err){
+            if(err) {
+                console.log(err);
+            } else {
+                res.redirect("/secret/dontleak/interns");
+            }
+        });
+    });
+});
+
+
+app.get("/intern/:id/delete", function(req, res){
+    Intern.findByIdAndRemove(req.params.id, function(err){
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect("/secret/dontleak/interns");
+        }
+    })
+})
+
+
 app.post("/intern/:id/delete", function(req, res){
 	Intern.findByIdAndRemove(req.params.id, function(err){
 		if(err) {
