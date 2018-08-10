@@ -214,7 +214,10 @@ app.get("/secret/dontleak/interns", function(req, res){
     Intern.find({}, function(err, applications){
         if (err) console.log(err)
         else {
-            res.render('internApps', {applications});
+            if (req.user && req.user.username === "internAdmin")
+            res.render('internApps', {applications, currentUser: req.user});
+            else res.send("only internAdmin allowed")
+
         }
     })
 });
