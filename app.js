@@ -17,8 +17,9 @@ let QRCode = require('qrcode')
 
 let User = require('./models/user'),
     Event = require('./models/event'),
-    BlogPost = require('./models/blogPost');
-    Subscriber = require('./models/subscriber');
+    BlogPost = require('./models/blogPost'),
+    Subscriber = require('./models/subscriber'),
+    Intern = require('./models/intern');
 
 
 mongoose.connect("mongodb://dev:dev@ds237620.mlab.com:37620/evenox");
@@ -175,6 +176,66 @@ function ensureLoggedIn() {
     }
 }
 
+/////////////////////////Internship Routes///////////////////////////////////////////
+app.get("/intern", function(req, res){
+	Intern.find({}, function(err, applicants){
+		if(err) {
+			console.log(err);
+		} else {
+			res.render("Intern/landing", {applicants: applicants});
+		}
+	});
+});
+app.get("/intern/apply", function(req, res){
+	res.render("Intern/apply");
+});
+app.get("/intern/applied", function(req, res){
+	res.render("Intern/applied");
+})
+app.post("/intern/apply", function(req, res){
+	var applicant = {
+		name: req.body.name,
+		roll: req.body.roll,
+		mob: req.body.mob,
+		email: req.body.email,
+		interest: req.body.interest,
+		note: req.body.note,
+		approved: false
+	};
+	Intern.create(applicant, function(err, applied){
+		if(err) {
+			console.log(err);
+		} else {
+			res.redirect("/intern/applied");
+		}
+	});
+});
+app.post("/intern/:id/approve", function(req, res){
+	Intern.findById(req.params.id, function(err, applicant){
+		if(applicant.approved === false){
+			var approval = true;
+		} else {
+			var approval = false;
+		}
+		Intern.update({_id: applicant._id}, {$set:{approved: approval}}, function(err){
+			if(err) {
+				console.log(err);
+			} else {
+				res.redirect("/intern");
+			}
+		});
+	});
+});
+app.post("/intern/:id/delete", function(req, res){
+	Intern.findByIdAndRemove(req.params.id, function(err){
+		if(err) {
+			console.log(err);
+		} else {
+			res.redirect("/intern");
+		}
+	})
+})
+
 /////////////////////////My Profile Routes///////////////////////////////////////////
 app.get("/user/calendar", ensureLoggedIn(), function(req,res){
     res.render("Profile/calendar", {currentTab: "calendar"});
@@ -189,7 +250,15 @@ app.get("/user/certificates", ensureLoggedIn(), function(req,res){
     res.render("Profile/certificates", {currentTab: "certificates"});
 });
 app.get("/user/events", ensureLoggedIn(), function(req,res){
-    res.render("Profile/events", {currentTab: "events"});
+    // find by user id
+    Event.find({},function(err, events){
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("Profile/events", {events: events, currentTab: "events"});
+        }
+
+    });
 });
 
 /////////////////////////Events Routes///////////////////////////////////////////

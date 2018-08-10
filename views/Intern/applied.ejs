@@ -1,0 +1,26 @@
+<% include ../partials/internheader.ejs %>
+
+<head>
+    <% var time = 10; %>
+    <meta http-equiv="refresh" content="<%= time %>;url=/intern">
+</head>
+<div class="success-msg">
+	<h1>Your application sucessfully submitted...<br>We will contact you soon...</h1>
+	<br><br>
+	<p>Redirecting you to intern page in <span id="count"><%= time %></span> seconds...</p>
+</div>
+<script>
+window.onload = function(){
+	var count = document.getElementById("count").textContent - 1;
+	var setcount = setInterval(function(){
+		document.getElementById("count").textContent = count;
+		count--;
+		console.log(count);
+		if(count < 0){
+			clearInterval(setcount);
+		}
+	}, 1000);
+}	
+</script>
+
+<% include ../partials/internfooter.ejs %>
