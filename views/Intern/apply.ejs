@@ -1,0 +1,31 @@
+<% include ../partials/internheader.ejs %>
+
+<div class="apply-form">
+	<h1>Eventox Internship Form</h1>
+	<form action="/intern/apply" method="POST">
+		What's your name?<input type="text" name="name">
+		You got a roll no.?<input type="text" name="roll">
+		What are your areas of interest?<br>
+		<label class="check">Graphic Designing
+			<input type="checkbox" name="interest" value="Graphic Designing">
+			<span class="checkmark"></span>
+		</label>
+		<label class="check">Graphic Designing
+			<input type="checkbox" name="interest" value="Graphic Designing">
+			<span class="checkmark"></span>
+		</label>
+		<label class="check">Graphic Designing
+			<input type="checkbox" name="interest" value="Graphic Designing">
+			<span class="checkmark"></span>
+		</label>
+		<label class="check">Graphic Designing
+			<input type="checkbox" name="interest" value="Graphic Designing">
+			<span class="checkmark"></span>
+		</label>
+		Where we should call/text you?<input type="text" name="mob">
+		Where we can email you?<input type="email" name="email">
+		<input type="submit" value="SUBMIT">
+	</form>
+</div>
+
+<% include ../partials/internfooter.ejs %>

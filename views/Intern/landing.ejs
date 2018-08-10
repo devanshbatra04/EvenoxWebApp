@@ -1,0 +1,67 @@
+<% include ../partials/internheader.ejs %>
+
+<div class="nav">
+	<h1>Eventox</h1>
+</div>
+<div class="banner">
+	<h1>What is Eventox?</h1>
+	<p>Eventox is a tech based startup aiming to eliminate every events related problems through creative solutions. We focus on every person who is part of making an Event successfull and by minimising the gap between them. We aim to become one stop solution to all events related problems.</p>
+	<a href="">Know More</a>
+	<h2>What you will take out of this internship?</h2>
+	<ul>
+		<li>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum </li>
+		<li>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum </li>
+		<li>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum </li>
+		<li>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum </li>
+	</ul>
+	<a href="/intern/apply">Apply Now</a>
+</div>
+<div class="applicants">
+	<% applicants.forEach(function(applicant){ %>
+	<div class="applicant">
+		<table>
+			<tr>
+				<td>Name</td>
+				<td><%= applicant.name %></td>
+			</tr>
+			<tr>
+				<td>Roll</td>
+				<td><%= applicant.roll %></td>
+			</tr>
+			<tr>
+				<td>Interests</td>
+				<td>
+					<ul>
+					<% applicant.interest.split(",").forEach(function(interest){ %>
+						<li><%= interest %></li>
+					<% }) %>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>Mobile</td>
+				<td><%= applicant.mob %></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><%= applicant.email %></td>
+			</tr>
+			<tr>
+				<td>Approved</td>
+				<td><%= applicant.approved %></td>
+			</tr>
+		</table>
+		<div class="forms">
+			<form action="/intern/<%= applicant._id %>/approve" method="POST">
+				<% if(applicant.approved === false){ var approve = "Approve";} else {var approve = "Unapprove";} %>
+				<input type="submit" value="<%= approve %>">
+			</form>
+			<form action="/intern/<%= applicant._id %>/delete" method="POST">
+				<input type="submit" value="Delete">
+			</form>
+		</div>
+	</div>
+	<% }) %>
+</div>
+
+<% include ../partials/internfooter.ejs %>
