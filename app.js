@@ -210,7 +210,7 @@ app.post("/intern/apply", function(req, res){
 		}
 	});
 });
-app.get("/secret/dontleak/interns", function(req, res){
+app.get("/intern/apps", function(req, res){
     Intern.find({}, function(err, applications){
         if (err) console.log(err)
         else {
