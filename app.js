@@ -251,7 +251,7 @@ app.get("/intern/:id/approve", function(req, res){
             if(err) {
                 console.log(err);
             } else {
-                res.redirect("/intern/applied");
+                res.redirect("/intern/apps");
             }
         });
     });
@@ -263,7 +263,7 @@ app.get("/intern/:id/delete", function(req, res){
         if(err) {
             console.log(err);
         } else {
-            res.redirect("/secret/dontleak/interns");
+            res.redirect("/intern/apps");
         }
     })
 })
