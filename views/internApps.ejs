@@ -143,7 +143,7 @@
             <div class="cell">
                 <button><a href="/intern/<%= data._id %>/approve">Approve</a></button>
                 <button><a href="/intern/<%= data._id %>/delete">Delete</a></button>
-                <input type="text" style=""><button onclick="Rate(this, '<%= data._id %>')">Add comments</button>
+                <textarea id="" cols="30" rows="5">professionalism = &#10Knowledge = &#10Roles =  &#10Presentation Skills = </textarea><button onclick="Rate(this, '<%= data._id %>')">Add comments</button>
 
             </div>
         </div>
@@ -157,7 +157,7 @@ Only Intern Admin has access to this route
 </body>
 <script>
     function Rate(button, id){
-        console.log($(button).prev().val(), id);
+        console.log($(button).prev().html(), id);
         window.location.href = `/intern/${id}/rate/${$(button).prev().val()}`;
     }
 </script>
