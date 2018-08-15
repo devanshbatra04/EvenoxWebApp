@@ -7,7 +7,8 @@ var internSchema = mongoose.Schema({
     email: String,
     interest: String,
     note: String,
-    approved: Boolean
+    approved: Boolean,
+    interviewComments: String
 });
 
 var Intern = mongoose.model("Intern", internSchema);

@@ -268,6 +268,18 @@ app.get("/intern/:id/delete", function(req, res){
     })
 })
 
+app.get("/intern/:id/rate/:comments", function(req, res){
+    Intern.findById(req.params.id, function(err, applicant){
+        Intern.update({_id: applicant._id}, {$set:{interviewComments: req.params.comments}}, function(err, intern){
+            if(err) {
+                console.log(err);
+            } else {
+                 res.redirect("/intern/apps");
+            }
+        });
+    });
+})
+
 
 app.post("/intern/:id/delete", function(req, res){
 	Intern.findByIdAndRemove(req.params.id, function(err){
