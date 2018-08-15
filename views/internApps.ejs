@@ -82,6 +82,8 @@
 </style>
 
 <body>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
 <% if (currentUser && currentUser.username === "internAdmin") {%>
 <div class="wrapper">
     <h3 style="color: #f8f8ff">
@@ -102,8 +104,11 @@
             <div class="cell">
                 Email
             </div>
-            <div class="mobile-no">
+            <div class="cell">
                 Contact Number
+            </div>
+            <div class="cell">
+                Interview Comments
             </div>
             <div class="cell">
                 approved
@@ -130,11 +135,16 @@
                 <%= data.mob %>
             </div>
             <div class="cell">
+                <%= data.interviewComments %>
+            </div>
+            <div class="cell">
                 <%= data.approved %>
             </div>
             <div class="cell">
                 <button><a href="/intern/<%= data._id %>/approve">Approve</a></button>
                 <button><a href="/intern/<%= data._id %>/delete">Delete</a></button>
+                <textarea id="" cols="30" rows="5">professionalism = &#10Knowledge = &#10Roles =  &#10Presentation Skills = </textarea><button onclick="Rate(this, '<%= data._id %>')">Add comments</button>
+
             </div>
         </div>
         <% }) %>
@@ -144,6 +154,11 @@
 <% } else { %>
 Only Intern Admin has access to this route
 <% } %>
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </body>
+<script>
+    function Rate(button, id){
+        console.log($(button).prev().html(), id);
+        window.location.href = `/intern/${id}/rate/${$(button).prev().val()}`;
+    }
+</script>
 </html>
