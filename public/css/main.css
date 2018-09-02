@@ -1,6 +1,61 @@
 .spla:hover {
     background-color:inherit !important;
 }
+nav{
+  font-family: sans-serif;
+  background-color: #00316b;
+}
+
+.right button:hover{
+    background-color: #2d968b;
+    color: #FFFAFA;
+}
+.links:hover{
+    background-color: #FF1493;
+}
+.toggle{
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #001f44;
+    color: white;
+    box-sizing: border-box;
+   display: none;
+}
+.toggle .right{
+    display: none;
+}
+@media (max-width: 1042px) {
+    .toggle{
+        display: inline;
+   }
+    .leftLinks{
+        margin-top: 55px;
+        display: none;
+    }
+    .links{
+        width: 100%;
+     display: block;
+     text-align: center;
+     background-color: #00316b;
+    }
+     .rgl{
+        width: 100%;
+         background-color: #00316b;
+          text-align: center;
+     }
+
+     .toggle .right{
+         display: inline;
+         margin-top: -2%;
+     }
+  .logs{
+      display: none;
+  }
+
+    .active{
+        display: block;
+    }
+}
 .section-search input{
     padding: 5px !important;
     font-size: 18px !important;

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link rel="stylesheet" href="/public/css/main.css">
     <link rel="stylesheet" href="/public/reu.css">
+
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Eventox Web App </title>
@@ -17,7 +18,7 @@
 </head>
     <body>
     <div class="navbar-fixed">
-        <nav class="grey">
+       <!-- <nav class="grey">
             <div class="container">
                 <div class="nav-wrapper">
                     <a href="/" class="center brand-logo" >Eventox</a>
@@ -61,5 +62,81 @@
                 </div>
             </div>
         </nav>
+   <nav>
+       -->
 
+
+        <nav>
+            <div class="toggle navbar-fixed">
+                <i class="fas fa-bars fa-2x menu" ></i>
+                <ul class="right">
+                    <% if (currentUser != undefined) { %>
+                    <li>
+                        <a href="/user/calendar" class="spla"><button class="btn-small waves-effect waves-dark ">My Profile</button></a>
+                    </li>
+                    <li>
+                        <a href="/logout" class="spla"><button class="btn-small waves-effect waves-dark ">Logout</button></a>
+                    </li>
+                    <% } else { %>
+                    <li>
+                        <a href="/login" class="spla"><button class="btn-small waves-effect waves-dark">Login</button></a>
+                    </li>
+                    <% } %>
+                </ul>
+
+            </div>
+            <a href="/" class="center brand-logo lofk">Eventox</a>
+
+       <ul class="leftLinks">
+           <li class="links">
+               <a href="#home">section1</a>
+           </li>
+           <li class="links">
+               <a href="#search">search</a>
+           </li>
+           <li class="links">
+               <a href="#home">section3</a>
+           </li>
+           <li class="links">
+               <a href="#home">section4</a>
+           </li>
+       </ul>
+    <div class="butts">
+        <ul class="right rgl">
+
+            <li class="butt1">
+                <a href="/events" class="spla"><button class="btn-small waves-effect waves-dark ">Events</button></a>
+            </li>
+            <li>
+                <a href="/blog/posts" class="spla"><button class="btn-small waves-effect waves-dark ">Blogs</button></a>
+            </li>
+
+            <% if (currentUser != undefined) { %>
+            <li class="logs">
+                <a href="/user/calendar" class="spla"><button class="btn-small waves-effect waves-dark ">My Profile</button></a>
+            </li>
+            <li class="logs">
+                <a href="/logout" class="spla"><button class="btn-small waves-effect waves-dark ">Logout</button></a>
+            </li>
+            <% } else { %>
+            <li class="logs">
+                <a href="/login" class="spla"><button class="btn-small waves-effect waves-dark">Login</button></a>
+            </li>
+            <% } %>
+        </ul>
     </div>
+
+        </nav>
+
+   </div>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
+       $(document).ready(function () {
+            $(".menu").click(function () {
+                $(".leftLinks").toggleClass('active');
+            })
+       })
+    </script>
