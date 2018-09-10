@@ -15,6 +15,7 @@ nav{
 .leftLinks{
     margin-left: 10px;
 }
+
 .links:hover{
     background-color: #f89422;
 }
@@ -175,11 +176,16 @@ nav{
     box-shadow: 1px 1px 10px 0
     rgba(193,79,82,1)
 }
+
+
+
+
 .eventFooter{
     float: left;
     padding-left: 20px;
     padding-top: 20px;
 }
+
 
 .applMgn {
     margin-top: 5%;
