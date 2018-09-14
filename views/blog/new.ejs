@@ -43,14 +43,16 @@
 <div class="container correct">
 
     <form action="/blog/posts" method="post">
-        <input name="title" type="text" placeholder="title">
+        <input name="title" type="text" placeholder="Add Blog Title">
         <div id="wmd-button-bar"></div>
 
         <textarea name="content" placeholder="content" id="wmd-input" class="wmd-input"></textarea>
 
-
+        <label class="lb">Preview of your blog</label>
         <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
-        <input type="submit">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
     </form>
 </div>
 <script>
