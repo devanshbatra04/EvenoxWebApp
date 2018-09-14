@@ -1,8 +1,9 @@
 <% include ../partials/header.ejs %>
-<h1>Add a new event</h1>
 
+<div class="container">
+    <h2 class="r">Add a new event</h2>
 
-<form action="/events" method="POST">
+    <form action="/events" method="POST">
 
     <input type="text" name="eventName" placeholder="Name of your event">
 
@@ -18,6 +19,9 @@
 
     <textarea name="Description" placeholder="Event Description" id="" cols="30" rows="10"></textarea>
 
-    <input type="submit">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
 </form>
+</div>
 <% include ../partials/footer.ejs %>

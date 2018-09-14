@@ -235,6 +235,11 @@
 	font-weight: bold;
 	color: black;
 }
+.r{
+	font-size: 50px;
+	padding-top: 30px;
+
+}
 /*post show page*/
 .post-show{
 	width: 85%;
