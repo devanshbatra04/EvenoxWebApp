@@ -1,5 +1,8 @@
 <% include partials/header.ejs %>
-
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../public/assets/aos.css">
+</head>
     <ul class="sidenav" id="mobile-nav">
         <li>
             <a href="#home">Events</a>
@@ -16,44 +19,49 @@
     </ul>
 
 <!--Slider-->
-<section class="slider">
+<section class="slider sliderAnimation">
     <ul class="slides">
-        <li>
+        <li class="slideImage">
             <img src="https://image.ibb.co/hbEMux/resort1.jpg" alt="">
             <div class="caption center-align">
                 <h2>Lorem ipsum dolor sit amet.</h2>
                 <h5 class="light grey-text text-lighten-3 hide-on-small-only">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam non illo earum cumque id est!</h5>
-                <a href="/login" class="btn btn-large">Continue</a>
+                <a href="/login" class="btn btn-large butts">Continue</a>
+
             </div>
+
         </li>
-        <li>
+        <li class="slideImage">
             <img src="https://image.ibb.co/mn1egc/resort2.jpg" alt="">
             <div class="caption left-align">
                 <h2>Lorem ipsum dolor sit amet, consectetur.</h2>
                 <h5 class="light grey-text text-lighten-3 hide-on-small-only">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam non illo earum cumque id est!</h5>
-                <a href="/login" class="btn btn-large">Continue</a>
+                <a href="/login" class="btn btn-large butts">Continue</a>
+
             </div>
-        </li>
-        <li>
+             </li>
+            <li class="slideImage">
             <img src="https://image.ibb.co/mbCVnH/resort3.jpg" alt="">
             <div class="caption right-align">
                 <h2>Lorem ipsum dolor sit amet.</h2>
                 <h5 class="light grey-text text-lighten-3 hide-on-small-only">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam non illo earum cumque id est!</h5>
-                <a href="/login" class="btn btn-large">Continue</a>
+                <a href="/login" class="btn btn-large butts">Continue</a>
+
             </div>
         </li>
     </ul>
+
 </section>
 
 <!--/Slider-->
 
 <!--Search-->
 
-<section id="search" class="section section-search grey darken-1 center scrollspy">
-    <div class="container">
+<section id="search" class="section searchBox section-search darken-1 center scrollspy">
+    <div class="container ">
         <div class="row">
-            <div class="col s12">
-                <h3>Search Events</h3>
+            <div class="col s12 ">
+                <h3 data-aos="flip-up">Search Events</h3>
                 <div class="input-field">
                     <input type="text" class="white grey-text autocomplete" id="autocomplete-input" placeholder="Marathon, Hackathon, etc..">
                 </div>
@@ -62,33 +70,32 @@
     </div>
 </section>
 
-
 <!--/Search-->
 
 <!--Section Boxes-->
 
-<section class = "section section-icons grey lighten-4 center">
+<section class = "section section-icons lighten-4 center">
     <div class="container">
         <div class="row">
-            <div class="col s12 m4">
-                <div class="card-panel">
-                    <i class="material-icons large grey-text">add_location</i>
+            <div class="col s12 m4" data-aos="flip-left">
+                <div class="card-panel client"  >
+                    <i class="material-icons large logo ">add_location</i>
                         <h4>host</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, nihil.</p>
 
                 </div>
             </div>
-            <div class="col s12 m4">
-                <div class="card-panel">
-                    <i class="material-icons large grey-text">group_add</i>
+            <div class="col s12 m4"  data-aos="flip-left">
+                <div class="card-panel client" >
+                    <i class="material-icons large logo">group_add</i>
                     <h4>Connect</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, nihil.</p>
 
                 </div>
             </div>
-            <div class="col s12 m4">
-                <div class="card-panel">
-                    <i class="material-icons large grey-text">explore</i>
+            <div class="col s12 m4" data-aos="flip-left">
+                <div class="card-panel client" >
+                   <i class="material-icons large logo" >explore</i>
                     <h4>Explore</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, nihil.</p>
 
@@ -107,91 +114,114 @@
         <div class="row">
             <h4>Featured Events on Eventox</h4>
             <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
+                <div class="card featuredCards" data-aos="fade-up"
+                     data-aos-duration="3000">
+                    <div class="card-image ">
                         <img src="https://picsum.photos/g/100/?random" alt="">
                         <span class="card-title">Lorem Ipum</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light shareButt"><i class="fas fa-share-alt"></i></a>
                     </div>
                     <div class="card-content">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur laudantium nostrum officia, optio provident soluta tenetur? Eius explicabo quia veniam.
+                   <div> <a href="#"><i class="fas fa-ellipsis-h fa-1x dotsButt"></i></a></div>
+                     </div>
+
+
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card featuredCards" data-aos="fade-up"
+                     data-aos-duration="3000">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/g/100/?random" alt="">
+                        <span class="card-title">Lorem Ipum</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light shareButt"><i class="fas fa-share-alt"></i></a>
+                    </div>
+                    <div class="card-content">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur laudantium nostrum officia, optio provident soluta tenetur? Eius explicabo quia veniam.
+                        <div> <a href="#"><i class="fas fa-ellipsis-h fa-1x dotsButt"></i></a></div>
                     </div>
                 </div>
             </div>
             <div class="col s12 m4">
-                <div class="card">
+                <div class="card featuredCards" data-aos="fade-up"
+                     data-aos-duration="3000">
                     <div class="card-image">
                         <img src="https://picsum.photos/g/100/?random" alt="">
                         <span class="card-title">Lorem Ipum</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light shareButt"><i class="fas fa-share-alt"></i></a>
                     </div>
                     <div class="card-content">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur laudantium nostrum officia, optio provident soluta tenetur? Eius explicabo quia veniam.
+                        <div> <a href="#"><i class="fas fa-ellipsis-h fa-1x dotsButt"></i></a></div>
                     </div>
                 </div>
             </div>
             <div class="col s12 m4">
-                <div class="card">
+                <div class="card featuredCards" data-aos="fade-up"
+                     data-aos-duration="3000">
                     <div class="card-image">
                         <img src="https://picsum.photos/g/100/?random" alt="">
                         <span class="card-title">Lorem Ipum</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light shareButt"><i class="fas fa-share-alt"></i></a>
                     </div>
                     <div class="card-content">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur laudantium nostrum officia, optio provident soluta tenetur? Eius explicabo quia veniam.
+                        <div> <a href="#"><i class="fas fa-ellipsis-h fa-1x dotsButt"></i></a></div>
                     </div>
                 </div>
             </div>
             <div class="col s12 m4">
-                <div class="card">
+                <div class="card featuredCards" data-aos="fade-up"
+                     data-aos-duration="3000">
                     <div class="card-image">
                         <img src="https://picsum.photos/g/100/?random" alt="">
                         <span class="card-title">Lorem Ipum</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light shareButt"><i class="fas fa-share-alt"></i></a>
                     </div>
                     <div class="card-content">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur laudantium nostrum officia, optio provident soluta tenetur? Eius explicabo quia veniam.
+                        <div> <a href="#"><i class="fas fa-ellipsis-h fa-1x dotsButt"></i></a></div>
                     </div>
                 </div>
             </div>
             <div class="col s12 m4">
-                <div class="card">
+                <div class="card featuredCards" data-aos="fade-up"
+                     data-aos-duration="3000">
                     <div class="card-image">
                         <img src="https://picsum.photos/g/100/?random" alt="">
                         <span class="card-title">Lorem Ipum</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light shareButt"><i class="fas fa-share-alt"></i></a>
                     </div>
                     <div class="card-content">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur laudantium nostrum officia, optio provident soluta tenetur? Eius explicabo quia veniam.
+                        <div> <a href="#"><i class="fas fa-ellipsis-h fa-1x dotsButt"></i></a></div>
                     </div>
-                </div>
-            </div>
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://picsum.photos/g/100/?random" alt="">
-                        <span class="card-title">Lorem Ipum</span>
-                    </div>
-                    <div class="card-content">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur laudantium nostrum officia, optio provident soluta tenetur? Eius explicabo quia veniam.
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!--Footer Section-->
+<!--Footer Section Error in this section-->
 <section>
-    <div id="footer" class="section scrollspy grey">
-        <div class="container">
+    <div id="footer" class="section scrollspy footBox">
+        <img src="../public/eventox-logo.jpg" class="eventFooter" height="100px" width="100px">
+        <div class="container buttFoot">
             <div class="row">
-                <div class="col s12 m4">
-                    <div class="row">
-                        <div class="col s12 applMgn">
-                            <a class="waves-effect waves-light btn grey darken-2">Check Out Our Blog</a>
+
+                <div class="col s12 m4 ">
+                    <div class="row ">
+                        <div class="col l12 s6 applMgn">
+                            <a class="waves-effect waves-light btn darken-2 butts checkBlog">Check Out Our Blog</a>
                         </div>
                         <div class="row">
-                        <div class="col s6 applMgn">
-                            <a class="waves-effect waves-light btn grey">Meet the team</a>
+                        <div class="col l12 s6 applMgn">
+                            <a class="waves-effect waves-light btn butts">Meet the team</a>
                         </div>
-                        <div class="col s6 applMgn">
-                            <a class="waves-effect waves-light btn grey">Work With Us</a>
+                        <div class="col l12 s6 applMgn">
+                            <a class="waves-effect waves-light btn butts">Work With Us</a>
                         </div>
 
                     </div>
@@ -200,20 +230,28 @@
         </div>
             <!--<p class="flow-text">Eventox &copy; 2018</p>-->
 
-        </div>
+        </div></div>
 </section>
 
 <!--JavaScript at end of body for optimized loading-->
+<script src="../public/assets/aos.js"></script>
+<script type="text/javascript">
+    AOS.init({
+        duration:1200,
+    });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
 <script>
+
+
     var sideNav = document.querySelector('.sidenav');
     M.Sidenav.init(sideNav,{});
-
     //slider
     const slider = document.querySelector('.slider');
     M.Slider.init(slider, {
         indicators: false,
-        height: 500,
+        height: 750,
         transition: 500,
         interval: 6000
     });

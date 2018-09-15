@@ -1,20 +1,200 @@
 .spla:hover {
     background-color:inherit !important;
 }
+nav{
+  font-family: sans-serif;
+  background-color: #00316b;
+}
+.butts{
+    background-color: #f89422;
+}
+.right button:hover{
+    background-color: #2d968b;
+    color: #FFFAFA;
+}
+.leftLinks{
+    margin-left: 10px;
+}
+
+.links:hover{
+    background-color: #f89422;
+}
+.toggle{
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #001f44;
+    color: white;
+    box-sizing: border-box;
+   display: none;
+}
+.toggle .right{
+    display: none;
+}
+@media (max-width: 1042px) {
+    .toggle{
+        display: inline;
+   }
+    .leftLinks{
+        margin-left: 0px;
+       width: 100%;
+        margin-top: 55px;
+        display: none;
+    }
+    .links{
+        width: 100%;
+     display: block;
+     text-align: center;
+     background-color: #00316b;
+    }
+     .rgl{
+        width: 100%;
+         background-color: #00316b;
+          text-align: center;
+     }
+
+     .toggle .right{
+         display: inline;
+         margin-top: -2%;
+     }
+  .logs{
+      display: none;
+  }
+
+    .active{
+        display: block;
+    }
+}
+.searchBox {
+    background-color: #f89422;
+
+}
 .section-search input{
     padding: 5px !important;
     font-size: 18px !important;
     width:90% !important;
     border: #f4f4f4f4 3px solid !important;
 }
+.section-icons{
+    background-color:black;
+}
+.sliderAnimation{
+    position: relative;
+}
+.slideImage{
+    position: absolute;
+}
+.scrolDown{
+    position: absolute;
+    margin-top: -300px;
+    z-index: 1000;
+    margin-left: 40%;
+}
+.scrolDown .myScroll{
+    height: 180px;
+    width: 150px;
+}
+.featuredCards{
+    border-bottom-left-radius: 3%;
+    border-bottom-right-radius: 3%;
+    border-top-right-radius: 3%;
+    border-top-left-radius: 3%;
+}
+.featuredCards .card-image img{
+    border-top-left-radius: 3%;
+    border-top-right-radius: 3%;
+}
+.section-featured h4{
+    text-align: center;
+    color: white;
+    font-family: 'Merriweather', serif;
+    text-shadow: 1px 1px rgba(193,79,82,1);
+   margin-top: 30px;
+    padding-top: 100px;
+    margin-bottom: 50px;
+}
+.section-featured{
+   background-color: black;
+    min-height: 1100px;
+}
 .section-featured img{
     max-height: 200px !important;
+
 }
+.shareButt{
+    background-color: #f89422;
+}
+.shareButt:hover{
+    background-color: #26a69a;
+}
+.dotsButt{
+    color:  black;
+    float: right;
+}
+.dotsButt:hover{
+    font-size: 25px;
+    color: #26a69a;
+}
+.client {
+    /*width:248px;
+    height:220px;*/
+    background-color:#fff;
+    text-align:center;
+    float:left;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing:1px;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+    border-right:1px solid #f0f0f0;
+    border-bottom:1px solid #f0f0f0;
+    cursor:pointer;
+}
+.client:hover {
+    -ms-transform: scale(1.1,1.1); /* IE 9 */
+    -webkit-transform: scale(1.1,1.1); /* Safari */
+    transform: scale(1.1,1.1);
+    -webkit-box-shadow: 10px 10px 91px 0px rgba(193,79,82,1);
+    -moz-box-shadow: 10px 10px 91px 0px rgba(193,79,82,1);
+    box-shadow: 10px 10px 91px 0px rgba(193,79,82,1);
+    z-index:9999;
+    border-right:1px solid transparent;
+    border-bottom:1px solid transparent;
+    cursor:pointer;
+    background-color:#fff;
+}
+.client:hover i{
+  text-decoration-color: #2a6496;
+}
+.featuredCards{
+    object-fit: cover;
+    filter: grayscale(0%) contrast(120%);
+    box-shadow: 10px 15px 25px 0px rgba(193,79,82,1);
+    display: block;
+    transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.featuredCards:hover{
+    box-shadow: 1px 1px 10px 0
+    rgba(193,79,82,1)
+}
+
+
+
+
+.eventFooter{
+    float: left;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+
 .applMgn {
     margin-top: 5%;
 }
 .applMgn a {
     width: 100%;
+}
+.footBox{
+    background-color: black;
 }
 
 #footer .container{
