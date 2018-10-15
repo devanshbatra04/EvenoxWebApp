@@ -1,7 +1,7 @@
 <% include partials/header.ejs %>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../public/assets/aos.css">
+  <!--<link rel="stylesheet" type="text/css" href="../public/assets/aos.css">-->
 </head>
     <ul class="sidenav" id="mobile-nav">
         <li>
@@ -80,38 +80,80 @@
 -->
 
 <!--/Search-->
+<!--
+<div class="myslider">
+    <p class="item-1">This is your last chance. After this, there is no turning back.</p>
 
-<!--Section Boxes-->
+<p class="item-2">You take the blue pill - the story ends, you wake up in your bed and believe whatever you want to believe.</p>
 
-<section class = "section section-icons lighten-4 center">
+<p class="item-3">You take the red pill - you stay in Wonderland and I show you how deep the rabbit-hole goes.</p>
+</div>
+-->
+    <!--Section Boxes-->
+<div class="mytext">
+<div class="slidingVertical">
+    <span><h2>Amazing.</h2></span>
+    <span><h2>Beautiful.</h2></span>
+    <span><h2>Cute.</h2></span>
+    <span><h2>Delightful.</h2></span>
+    <span><h2>Emotional.</h2></span>
+</div>
+</div>
+<div class="mytext2">
+    <div class="slidingVertical1">
+        <span><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p></span>
+        <span><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p></span>
+        <span><p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p></span>
+        <span><p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p></span>
+    </div>
+
+</div>
+<div class="myback">
+<section class = "section section-icons lighten-4">
     <div class="container">
         <div class="row">
-            <div class="col s12 m4" data-aos="flip-left">
-                <div class="card-panel client"  >
+            <div class="col s12 m4 host">
+                <div class="card-panel client fall-item fall-effect"  >
                     <i class="material-icons large logo ">add_location</i>
                         <h4>host</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, nihil.</p>
+                       <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, nihil.</p>-->
 
                 </div>
             </div>
             <div class="col s12 m4"  data-aos="flip-left">
-                <div class="card-panel client" >
+                <div class="card-panel client fall-item fall-effect" >
                     <i class="material-icons large logo">group_add</i>
-                    <h4>Connect</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, nihil.</p>
+                    <h4>Connect</h4><!--
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, nihil.</p>-->
 
                 </div>
             </div>
             <div class="col s12 m4" data-aos="flip-left">
-                <div class="card-panel client" >
+                <div class="card-panel client fall-item fall-effect" >
                    <i class="material-icons large logo" >explore</i>
-                    <h4>Explore</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, nihil.</p>
+                    <h4>Explore</h4><!--
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, nihil.</p>-->
 
                 </div>
             </div>
         </div>
     </div>
+<!--
+<div class="container mycircles row">
+    <div class="col sm12 md4 span3">
+        <div class="circle">
+        </div>
+    </div>
+    <div class="col sm12 md4 span3">
+        <div class="circle">
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-4 span3">
+        <div class="circle">
+        </div>
+    </div>
+</div>
+-->
 </section>
 
 <!--/section boxes-->
@@ -212,8 +254,9 @@
         </div>
     </div>
 </section>
-
+</div>
 <!--Footer Section Error in this section-->
+<!--
 <section>
     <div id="footer" class="section scrollspy footBox">
         <img src="../public/eventox-logo.jpg" class="eventFooter" height="100px" width="100px">
@@ -237,10 +280,62 @@
                 </div>
             </div>
         </div>
-            <!--<p class="flow-text">Eventox &copy; 2018</p>-->
+            &lt;!&ndash;<p class="flow-text">Eventox &copy; 2018</p>&ndash;&gt;
 
         </div></div>
 </section>
+-->
+<!--myfooter-->
+
+<footer class="footer-distributed">
+    <div class="footer-left">
+        <h3><span>&nbsp;<img src="/public/eventox-logo.jpg" height="50px"></span>&nbsp;eventox</h3>
+
+        <p class="footer-links">
+            <a href="#">Home</a>
+            ·
+            <a href="#">Blog</a>
+            ·
+            <a href="#">Pricing</a>
+            ·
+            <a href="#">About</a>
+            ·
+            <a href="#">Faq</a>
+            ·
+            <a href="#">Contact</a>
+        </p>
+
+        <p class="footer-company-name">eventox© 2018</p>
+
+        <div class="footer-icons">
+
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
+
+        </div>
+
+    </div>
+
+    <div class="footer-right">
+
+        <p>Contact Us</p>
+
+        <form action="#" method="post">
+
+            <input type="text" name="email" placeholder="Email">
+            <textarea name="message" placeholder="Message"></textarea>
+            <button>Send</button>
+
+        </form>
+
+    </div>
+
+</footer>
+
+
+
 
 <!--JavaScript at end of body for optimized loading-->
 <script src="../public/assets/aos.js"></script>

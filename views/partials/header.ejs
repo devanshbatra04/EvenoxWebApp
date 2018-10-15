@@ -169,19 +169,34 @@
     <div id="myOverlay" class="overlay">
         <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
         <div class="overlay-content">
-            <form action="/#" id="formSearch">
+            <form action="/search" method="post" id="formSearch">
                 <div class="input-field">
-                <input class="autocomplete" id="autocomplete-input" style="color: white; font-size: 40px"placeholder="Marathon, Hackathon, etc..">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <input class="autocomplete" name="searchevent" id="autocomplete-input" autocomplete="off" style="color: white; font-size: 40px"placeholder="Marathon, Hackathon, etc..">
+                <button  id="mybutt"><i class="fa fa-search"></i></button>
                 </div>
             </form>
         </div>
     </div>
+    <div class="container hello">
+        <nav class="mynav">
+            <a href="/" class="center brand-logo lofk" style="font-family: 'Montserrat', sans-serif;color: white">eventox</a>
+
+            <a href="#0" class="js-menu-open menu-open">
+                <i class="material-icons">menu</i>
+            </a>
+        </nav>
+        <div class="js-side-nav-container side-nav-container">
+            <div class="js-side-nav side-nav">
+                <a href="#0" class="js-menu-close menu-close">
+                    <i class="material-icons" style="float: right">close</i>
+                 </a>
+
+            </div>
+        </div>
+    </div>
+
    <!--</div>-->
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script type="text/javascript">
        /*$(document).ready(function () {
             $(".menu").click(function () {
@@ -197,4 +212,51 @@
        function closeSearch() {
            document.getElementById("myOverlay").style.display = "none";
        }
+       'use strict'
+
+       class SideNav {
+           constructor () {
+               this.sideNavEl = document.querySelector('.js-side-nav');
+               this.sideNavContainerEl = document.querySelector('.js-side-nav-container');
+               this.showButtonEl = document.querySelector('.js-menu-open');
+               this.closeButtonEl = document.querySelector('.js-menu-close');
+
+               this.openSideNav = this.openSideNav.bind(this);
+               this.closeSideNav = this.closeSideNav.bind(this);
+               this.blockClicks = this.blockClicks.bind(this);
+               this.onTransitionEnd = this.onTransitionEnd.bind(this);
+
+               this.addEventListeners();
+           }
+
+           addEventListeners() {
+               this.showButtonEl.addEventListener('click', this.openSideNav);
+               this.closeButtonEl.addEventListener('click', this.closeSideNav);
+               this.sideNavEl.addEventListener('click', this.blockClicks);
+               this.sideNavContainerEl.addEventListener('click', this.closeSideNav);
+           }
+
+           blockClicks(evt) {
+               evt.stopPropagation();
+           }
+
+           onTransitionEnd(evt) {
+               this.sideNavContainerEl.classList.remove('side-nav-animatable');
+               this.sideNavContainerEl.removeEventListener('transitionend', this.onTransitionEnd);
+           }
+
+           openSideNav() {
+               this.sideNavContainerEl.classList.add('side-nav-animatable');
+               this.sideNavContainerEl.classList.add('side-nav-visible');
+               this.sideNavContainerEl.addEventListener('transitionend', this.onTransitionEnd);
+           }
+
+           closeSideNav() {
+               this.sideNavContainerEl.classList.add('side-nav-animatable');
+               this.sideNavContainerEl.classList.remove('side-nav-visible');
+               this.sideNavContainerEl.addEventListener('transitionend', this.onTransitionEnd);
+           }
+       }
+
+       new SideNav();
     </script>

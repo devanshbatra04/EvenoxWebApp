@@ -317,6 +317,18 @@ app.get("/user/events", ensureLoggedIn(), function(req,res){
 });
 
 /////////////////////////Events Routes///////////////////////////////////////////
+app.post("/search",function (req,res) {
+    /*console.log(req.body.searchevent)*/
+    console.log(req.body.searchevent)
+    Event.find({name:req.body.searchevent},'_id',function (err,event) {
+        var eventid= event.toString();
+        var eventid2=eventid.slice(7,eventid.length-2)
+       console.log(eventid2)
+        var redirectsearch="/events/"+eventid2;
+        res.redirect(redirectsearch)
+    })
+
+})
 app.get("/events/new", ensureLoggedIn(), function(req, res){
     res.render("Events/newEvent", {currentUser: req.user});
 });
