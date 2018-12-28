@@ -1,26 +1,33 @@
 <% include ../partials/profileheader.ejs %>
 
 <div class="events">
-<% events.forEach(event => { %>
-
-<div class="event client1">
-	<div class="event-detail">
-	    <h2><%= event.name %></h2>
-	    <div>
-	        <strong>Location: </strong> <%= event.location %><br>
-	        <strong>Start Date and Time :</strong> <%= event.startDate %> <%= event.startTime %><br>
-	        <% var a ="/events/"; %>
-	        <% var id = event._id %>
-	        <% var url = a + id %>
-	        <a href=<%= url %>>More details</a>
-	    </div>
+	<%if (events.length > 0) { %>
+	<% events.forEach(event => { %>
+	<div class="event client1">
+		<div class="event-detail">
+			<h2><%= event.name %></h2>
+			<div>
+				<strong>Location: </strong> <%= event.location %><br>
+				<strong>Start Date and Time :</strong> <%= event.startDate %> <%= event.startTime %><br>
+				<% var a ="/events/"; %>
+				<% var id = event._id %>
+				<% var url = a + id %>
+				<a href=<%= url %>>More details</a>
+			</div>
+		</div>
+		<div class="event-pic">
+			<img src="/public/images/banner.jpg">
+		</div>
 	</div>
-	<div class="event-pic">
-		<img src="/public/images/banner.jpg">
-	</div>
-</div>
 
-<% }) %>
+	<% }) %>
+	<% }
+	else{ %>
+	<h3>Add your events</h3>
+	<% }
+	%>
+
+
 </div>
 
 <% include ../partials/profilefooter.ejs %>

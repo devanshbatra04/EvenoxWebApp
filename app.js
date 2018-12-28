@@ -31,7 +31,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/public', express.static(__dirname + '/public'));
 app.use(methodOverride("_method"));
-
 let fbLoginInfo = {
     "cookieSecret":"e33cf67dd274b91847ae9991359e2abf",
     "facebook":{
@@ -306,10 +305,15 @@ app.get("/user/certificates", ensureLoggedIn(), function(req,res){
 });
 app.get("/user/events", ensureLoggedIn(), function(req,res){
     // find by user id
-    Event.find({},function(err, events){
+console.log(req.user.id)
+    Event.find({'author.id':req.user.id},function(err, events){
         if (err) {
             console.log(err);
         } else {
+            if(events.length==0){
+               
+            }
+            console.log(events)
             res.render("Profile/events", {events: events, currentTab: "events"});
         }
 
@@ -317,6 +321,18 @@ app.get("/user/events", ensureLoggedIn(), function(req,res){
 });
 
 /////////////////////////Events Routes///////////////////////////////////////////
+app.post("/search",function (req,res) {
+    /*console.log(req.body.searchevent)*/
+    console.log(req.body.searchevent)
+    Event.find({name:req.body.searchevent},'_id',function (err,event) {
+        var eventid= event.toString();
+        var eventid2=eventid.slice(7,eventid.length-2)
+       console.log(eventid2)
+        var redirectsearch="/events/"+eventid2;
+        res.redirect(redirectsearch)
+    })
+
+})
 app.get("/events/new", ensureLoggedIn(), function(req, res){
     res.render("Events/newEvent", {currentUser: req.user});
 });

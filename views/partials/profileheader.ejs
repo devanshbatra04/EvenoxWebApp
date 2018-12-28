@@ -12,7 +12,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Eventox Web App</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/public/profile.css">
 </head>
 <body>
@@ -26,15 +27,16 @@
 		<a href="/"><img src="/public/eventox-logo.jpg"></a>
 	</div>
 </div>
-<div class="panel">
+<div class="panel" style="background-color: whitesmoke">
 	<div class="panel-left">
-		<div class="panel-nav">
-			<a class="tab" id="calendar" onclick="switchTab(this)" href="/user/calendar">Calendar</a>
+		<div class="panel-nav" style="background-color: whitesmoke">
+			<a class="tab" id="calendar" onclick="switchTab(this); " href="/user/calendar">Calendar</a>
 			<a class="tab" id="dashboard" onclick="switchTab(this)" href="/user/dashboard">Dashboard</a>
 			<a class="tab" id="tickets" onclick="switchTab(this)" href="/user/tickets">Tickets</a>
 			<a class="tab" id="certificates" onclick="switchTab(this)" href="/user/certificates">Certificates</a>
 			<a class="tab" id="events" onclick="switchTab(this)" href="/user/events">Events</a>
 		</div>
+
 		<script>
 			function switchTab(thistab){
 				[...document.getElementsByClassName("tab")].forEach(tab => {

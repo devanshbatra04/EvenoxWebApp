@@ -3,6 +3,10 @@
 	position: absolute;
 	top: 0;
 }
+.mytop{
+	background-color: rgba(0,0,0,0.7);
+}
+
 /*events page*/
 .banner{
 	width: 100%;
@@ -303,3 +307,4 @@
 		color: #ff3860;
 	}
 }
+
